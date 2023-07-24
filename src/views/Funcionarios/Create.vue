@@ -61,7 +61,7 @@ export default {
         'cargo': this.forms[1].value,
         'genero': this.forms[2].value,
         'email': this.forms[3].value,
-        'senha': this.forms[4].value,
+        'password': this.forms[4].value,
       };
 
       // Chamar a função para enviar a requisição POST
