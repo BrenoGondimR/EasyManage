@@ -5,7 +5,7 @@
         <div class="card">
           <div class="row">
             <div v-for="(form, index) in forms" :key="index" :class="form.col">
-              <label v-if="form.type !== 'password' || (form.type === 'password' && this.forms[1].value === 'admin')">{{ form.label }}</label>
+              <label>{{ form.label }}</label>
               <div>
                 <input v-if="form.type === 'text'" v-model="form.value" :type="form.type" :placeholder="form.placeholder" class="form-control" />
                 <div v-else-if="form.type === 'radio'" class="form-check">
@@ -13,7 +13,7 @@
                     <input v-model="form.value" :type="form.type" :value="option.value" :name="form.label" class="form-check-input" />{{ option.label }}
                   </label>
                 </div>
-                <div v-if="this.forms[1].value === 'admin'">
+                <div>
                   <input v-if="form.type === 'password'" v-model="form.value" :type="form.type" :placeholder="form.placeholder" class="form-control" />
                 </div>
               </div>

@@ -3,8 +3,8 @@ import {
   deleteFuncionarioUrl, createFuncionarioUrl, editFuncionarioUrl, findFuncionariosUrl
 } from "@/constants/config"
 
-export const findFuncionarios = (filter) => {
-  return axios.get(findFuncionariosUrl + filter);
+export const getFuncionarios = () => {
+  return axios.get(findFuncionariosUrl);
 };
 
 export const createFuncionarios = (bodyCupom) => {
