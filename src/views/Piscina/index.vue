@@ -1,11 +1,8 @@
 <template>
   <div class="py-4 container-fluid">
-    <div class="card">
-      <div class="row">
-        <div v-for="(form, index) in formsTratamento" :key="index" :class="formsTratamento.col">
-          <label>{{ formsTratamento.label }}</label>
-            <input v-if="formsTratamento.type === 'text'" v-model="formsTratamento.value" :type="formsTratamento.type" :placeholder="formsTratamento.placeholder" class="form-control" />
-        </div>
+    <div class=" row">
+      <div class="col-12">
+        <HistoryPisc></HistoryPisc>
       </div>
     </div>
   </div>
@@ -13,9 +10,12 @@
 
 <script>
 
+import HistoryPisc from "@/views/components/HistoricoTable.vue";
+
 export default {
   name: "piscina",
   components: {
+    HistoryPisc,
   },
   data() {
     return {

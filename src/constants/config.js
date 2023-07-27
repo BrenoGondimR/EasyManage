@@ -12,7 +12,10 @@ export const editFuncionarioUrl = apisUrl + 'funcionarios/edit';
 export const createFuncionarioUrl = apisUrl + 'funcionarios/create';
 export const findFuncionariosUrl = apisUrl + 'funcionarios';
 
-// Defina outras constantes globais, se necessário
+// Piscina
+export const criarTratamento = apisUrl + 'piscina/create';
+export const getHistory = apisUrl + 'piscina';
+
 
 // Exporte as constantes para serem usadas em outros arquivos
 export default {

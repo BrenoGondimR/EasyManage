@@ -2,7 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import Dashboard from "../views/Quartos/Dashboard.vue";
 import Funcionarios from "../views/Funcionarios/Funcionarios"
 import Signin from "../views/Signin.vue";
-import Piscina from "../views/Piscina/Piscina.vue";
+import CreateTrat from "../views/Piscina/Create.vue";
+import Piscina from "../views/Piscina/index.vue";
 import CreateFunc from "../views/Funcionarios/Create";
 
 const routes = [
@@ -20,6 +21,11 @@ const routes = [
     path: "/funcionarios",
     name: "Funcionarios",
     component: Funcionarios,
+  },
+  {
+    path: "/create_tratamento",
+    name: "Create Tratamento",
+    component: CreateTrat,
   },
   {
     path: "/piscina",
