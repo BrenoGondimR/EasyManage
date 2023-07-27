@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-header pb-0" style="display: flex; justify-content: space-between">
-      <h6>Historico Tratamentos/Manutenções</h6>
+      <h6>Historico Piscina</h6>
       <router-link class="nav-link d-flex align-items-center me-2 active" aria-current="page" to="/create_tratamento">
         <div id="btn-white" class="btn px-3 mb-2">Novo Tratamento</div>
       </router-link>
@@ -11,10 +11,12 @@
         <table class="table align-items-center mb-0">
           <thead>
           <tr>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Responsavel</th>
             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cloro</th>
-            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Alcalinidade</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pha</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acidez</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alcalinidade</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pha</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acidez</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Data</th>
           </tr>
           </thead>
           <tbody>
@@ -22,18 +24,25 @@
             <td>
               <div class="d-flex px-2 py-1">
                 <div class="d-flex flex-column justify-content-center">
-                  <p class="text-xs text-secondary mb-0">{{ history.cloro }}</p>
+                  <h6 class="mb-0 text-sm">{{ history.nome_piscineiro }}</h6>
+                  <p class="text-xs text-secondary mb-0">{{ history.nome_empresa }}</p>
                 </div>
               </div>
             </td>
             <td>
+              <p class="text-xs text-secondary mb-0">{{ history.cloro }}</p>
+            </td>
+            <td>
               <p class="text-xs text-secondary mb-0">{{ history.alcalinidade }}</p>
             </td>
-            <td class="align-middle text-center">
-              <span class="text-secondary text-xs font-weight-bold">{{ history.pha }}</span>
+            <td>
+              <p class="text-xs text-secondary mb-0">{{ history.pha }}</p>
+            </td>
+            <td>
+              <p class="text-xs text-secondary mb-0">{{ history.acidez }}</p>
             </td>
             <td class="align-middle text-center">
-              <span class="text-secondary text-xs font-weight-bold">{{ history.acidez }}</span>
+              <span class="text-secondary text-xs font-weight-bold">{{ history.history }}</span>
             </td>
           </tr>
           </tbody>
@@ -44,8 +53,8 @@
 </template>
 
 <script>
-import {getFuncionarios} from "@/views/Funcionarios/funcionarios_service";
 import {formatDate} from "@/utils";
+import { getAllHistory } from "@/views/Piscina/piscina_service";
 export default {
   name: "HistoryPisc",
 
@@ -55,22 +64,22 @@ export default {
     }
   },
   methods :{
-    getAllFuncionarios() {
-      // Chame a função para obter os funcionários da API
-      getFuncionarios()
+    getAllTratamento() {
+      getAllHistory()
           .then((response) => {
-            // Verifique se há dados retornados pela API
             if (response.data.data) {
-              // Limpe o array antes de preencher novamente
-              this.funcionarios = [];
-              response.data.data.forEach((funcionario) => {
+              this.tableHistory = [];
+              response.data.data.forEach((tratamento) => {
                 debugger
                 // Adicione cada funcionário à lista
-                this.funcionarios.push({
-                  nome: funcionario.nome,
-                  email: funcionario.email,
-                  cargo: funcionario.cargo,
-                  efetuado: formatDate(funcionario.createdAt)
+                this.tableHistory.push({
+                  nome_piscineiro: tratamento.nome_piscineiro,
+                  nome_empresa: tratamento.nome_empresa,
+                  cloro: tratamento.cloro,
+                  alcalinidade: tratamento.alcalinidade,
+                  pha: tratamento.pha,
+                  acidez: tratamento.acidez,
+                  history: formatDate(tratamento.createdAt)
                 });
               });
             }
@@ -82,7 +91,7 @@ export default {
     },
   },
   created() {
-    this.getAllFuncionarios();
+    this.getAllTratamento();
   },
 };
 
