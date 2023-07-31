@@ -1,7 +1,6 @@
 import moment from "moment/moment";
 let locale = "pt"
 export const formatDate = (date, format = locale === "pt" ? 'DD/MM/YYYY' : 'MM/DD/YYYY', showTime = false) => {
-    debugger
     if (date === null || date === undefined || date === "0001-01-01T00:00:00Z" || !date) return " - "
 
     const timeFormat = showTime ? (locale === "pt" ? ' HH:mm' : ' HH:mm') : '';

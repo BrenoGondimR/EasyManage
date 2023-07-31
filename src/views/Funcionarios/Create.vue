@@ -21,7 +21,7 @@
             <div class="row mt-4" style="justify-content: right;">
               <div class="col-6" style="display: flex">
                 <div class="col-6" style="margin-right: 15px;">
-                  <button id="btn-dark" class="btn w-100 px-3 mb-2 bg-gradient-success">Cancelar</button>
+                  <button id="btn-dark" @click="getPage" class="btn w-100 px-3 mb-2 bg-gradient-success">Cancelar</button>
                 </div>
                 <div class="col-6">
                   <button id="btn-white" @click="createFuncionario"  class="btn w-100 px-3 mb-2 btn-outline-success">Salvar</button>
@@ -54,8 +54,10 @@ export default {
     };
   },
   methods: {
+    getPage() {
+      this.$router.push('/funcionarios')
+    },
     createFuncionario() {
-      debugger
       const funcionario = {
         'nome': this.forms[0].value,
         'cargo': this.forms[1].value,

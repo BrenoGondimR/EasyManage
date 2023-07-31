@@ -94,8 +94,8 @@
               <span class="text-secondary text-xs font-weight-bold" :class="getPriorityClass(history.prioridade)">{{ history.prioridade }}</span>
             </td>
             <td class="align-middle text-center">
-              <b-dropdown v-model="dropdownValue" :text="history.estado" toggle-class="card-dropdown" class="mt-2">
-                <b-dropdown-item @click="toggleDropdownValue(history.ID, history.estado)">{{ history.estado === 'Pendente' ? this.dropdownValue = 'Ajustado' : this.dropdownValue = 'Pendente' }}</b-dropdown-item>
+              <b-dropdown v-model="dropdownValue" :class="getStatusClass(history.estado)" :text="history.estado" class="mt-2" :menu-class="getMenuClass(history.estado)">
+                <b-dropdown-item @click="toggleDropdownValue(history.ID)">{{ history.estado === 'Pendente' ? this.dropdownValue = 'Ajustado' : this.dropdownValue = 'Pendente' }}</b-dropdown-item>
               </b-dropdown>
             </td>
           </tr>
@@ -126,13 +126,13 @@ export default {
     getPageManut() {
       this.$router.push('/create_manutencao')
     },
-    toggleDropdownValue(id, estado) {
-      debugger
+    toggleDropdownValue(id) {
+      console.log(this.dropdownValue);
       let estadoFitler = {
-        'estado': estado,
         '_id': id,
+        'estado': this.dropdownValue,
       };
-      updateEstado(estadoFitler)
+      updateEstado(estadoFitler, id)
           .then((response) => {
             console.log(response.data);
             this.getAllManutencao();
@@ -152,6 +152,26 @@ export default {
           return 'card-alta';
         default:
           return '';
+      }
+    },
+    getMenuClass(status) {
+      // Retorna a classe apropriada para o menu suspenso (dropdown-menu)
+      if (status === 'Pendente') {
+        return 'pendente-color-menu';
+      } else if (status === 'Ajustado') {
+        return 'ajustado-color-menu';
+      } else {
+        return '';
+      }
+    },
+    getStatusClass(status) {
+      // Retorna a classe apropriada com base no valor atual
+      if (status === 'Pendente') {
+        return 'card-pendente';
+      } else if (status === 'Ajustado') {
+        return 'card-ajustado';
+      } else {
+        return '';
       }
     },
     getStatusText(status) {
@@ -199,9 +219,8 @@ export default {
                 // Verificar se todos os campos estão preenchidos
                 if (manutencao.titulo && manutencao.nome_piscineiro && manutencao.nome_empresa && manutencao.descricao && manutencao.estado && manutencao.prioridade && manutencao.createdAt) {
                   // Adicione cada funcionário à lista
-                  debugger
                   this.tableHistoryManutencao.push({
-                    ID: manutencao.ID,
+                    ID: manutencao._id,
                     titulo: manutencao.titulo,
                     nome_piscineiro: manutencao.nome_piscineiro,
                     nome_empresa: manutencao.nome_empresa,
@@ -227,11 +246,22 @@ export default {
   created() {
     this.getAllTratamento();
     this.getAllManutencao();
+    setTimeout(()=>{
+      debugger
+    },5000)
   },
 };
 </script>
 <style>
 #btn-white{
   width: 100% !important;
+}
+.dropdown-menu.show{
+  min-width: 86px !important;
+  border: none !important;
+}
+
+.btn.show{
+  background-color: unset !important;
 }
 </style>

@@ -72,7 +72,6 @@ export default {
               // Limpe o array antes de preencher novamente
               this.funcionarios = [];
               response.data.data.forEach((funcionario) => {
-                debugger
                 // Adicione cada funcionário à lista
                 this.funcionarios.push({
                   nome: funcionario.nome,

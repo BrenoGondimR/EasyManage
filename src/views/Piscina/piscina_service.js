@@ -18,7 +18,7 @@ export const createTratamento = (data) => {
 export const createManutencao = (data) => {
     return axios.post(criarManutencao, data);
 };
-export const updateEstado = (data) => {
-    return axios.post(updateEstadoManut, data);
+export const updateEstado = (data, manutId) => {
+    return axios.put(updateEstadoManut + manutId, data );
 };
 

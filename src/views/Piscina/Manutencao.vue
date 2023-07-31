@@ -4,6 +4,9 @@
       <div class="col-12">
         <div class="card">
           <div class="row">
+            <div class="col-md-8">
+              <h2>Manutenção</h2>
+            </div>
             <div v-for="(form, index) in forms" :key="index" :class="form.col">
               <label>{{ form.label }}</label>
               <div>
@@ -24,7 +27,7 @@
             <div class="row mt-4" style="justify-content: right;">
               <div class="col-6" style="display: flex">
                 <div class="col-6" style="margin-right: 15px;">
-                  <button id="btn-dark" class="btn w-100 px-3 mb-2 bg-gradient-success">Cancelar</button>
+                  <button id="btn-dark" @click="getPage" class="btn w-100 px-3 mb-2 bg-gradient-success">Cancelar</button>
                 </div>
                 <div class="col-6">
                   <button id="btn-white" @click="createManut"  class="btn w-100 px-3 mb-2 btn-outline-success">Salvar</button>
@@ -61,6 +64,9 @@ export default {
     };
   },
   methods: {
+    getPage() {
+      this.$router.push('/piscina')
+    },
     createManut() {
       let manutencao = {
         'estado': this.estado,
@@ -107,7 +113,6 @@ export default {
       }
     },
     getStatusClass(status) {
-      debugger
       // Retorna a classe apropriada com base no valor atual
       if (status === 'Baixa') {
         return 'baixa-color';
@@ -136,7 +141,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .card{
   padding: 25px !important;
 }

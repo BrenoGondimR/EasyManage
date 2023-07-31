@@ -17,7 +17,7 @@
         <div class="col-12 mt-4" style="justify-content: right; display: flex">
           <div class="col-6" style="display: flex">
             <div class="col-6" style="margin-right: 15px;">
-              <button id="btn-dark" class="btn w-100 px-3 mb-2 bg-gradient-success">Cancelar</button>
+              <button id="btn-dark" @click="getPage" class="btn w-100 px-3 mb-2 bg-gradient-success">Cancelar</button>
             </div>
             <div class="col-6">
               <button id="btn-white" @click="Tratamento"  class="btn w-100 px-3 mb-2 btn-outline-success">Salvar</button>
@@ -52,8 +52,10 @@ export default {
     };
   },
   methods:{
+    getPage() {
+      this.$router.push('/piscina')
+    },
     Tratamento() {
-      debugger
       const tratamento = {
         'type': this.type,
         'estado': this.estado,
