@@ -5,6 +5,7 @@ import Signin from "../views/Signin.vue";
 import CreateTrat from "../views/Piscina/Create.vue";
 import Piscina from "../views/Piscina/index.vue";
 import CreateFunc from "../views/Funcionarios/Create";
+import CreateManut from "../views/Piscina/Manutencao";
 
 const routes = [
   {
@@ -16,6 +17,11 @@ const routes = [
     path: "/dashboard-default",
     name: "Dashboard",
     component: Dashboard,
+  },
+  {
+    path: "/create_manutencao",
+    name: "Manutenção",
+    component: CreateManut,
   },
   {
     path: "/funcionarios",

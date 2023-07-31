@@ -1,10 +1,16 @@
 <template>
   <div class="card">
-    <div class="card-header pb-0" style="display: flex; justify-content: space-between">
-      <h6>Funcionarios</h6>
-      <router-link class="nav-link d-flex align-items-center me-2 active" aria-current="page" to="/create_funcionario">
-        <div id="btn-white" class="btn px-3 mb-2">Novo Funcionario</div>
-      </router-link>
+    <div class="row" style="display: flex; justify-content: space-between">
+      <b-col sm="8" class="mb-2">
+        <span class="h3 font-weight-semibold">Funcionarios</span>
+      </b-col>
+      <b-col md="4" style="justify-content: end !important;">
+        <div style="display: flex; gap: 1rem">
+          <b-button style="border-radius: 10px;" class="w-100 btn-create" variant="outline-primary" @click="getPageCreate">
+            Novo Funcionario
+          </b-button>
+        </div>
+      </b-col>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
       <div class="table-responsive p-0">
@@ -81,6 +87,9 @@ export default {
             // Tratar erros aqui, caso ocorram
             console.error(error);
           });
+    },
+    getPageCreate() {
+      this.$router.push('/create_funcionario')
     },
   },
   created() {

@@ -1,10 +1,19 @@
 <template>
   <div class="card">
-    <div class="card-header pb-0" style="display: flex; justify-content: space-between">
-      <h6>Historico Piscina</h6>
-      <router-link class="nav-link d-flex align-items-center me-2 active" aria-current="page" to="/create_tratamento">
-        <div id="btn-white" class="btn px-3 mb-2">Novo Tratamento</div>
-      </router-link>
+    <div class="row" style="display: flex; justify-content: space-between">
+      <b-col sm="7" class="mb-2">
+        <span class="h3 font-weight-semibold">Historico Piscina</span>
+      </b-col>
+      <b-col md="5" style="justify-content: end !important;">
+        <div style="display: flex; gap: 1rem">
+          <b-button style="border-radius: 10px;" class="w-100 btn-create" variant="outline-primary" @click="getPageCadastrar">
+            Tratamento
+          </b-button>
+          <b-button style="border-radius: 10px;" class="w-100 btn-create" variant="primary" @click="getPageManut">
+            Manutenção
+          </b-button>
+        </div>
+      </b-col>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
       <div class="table-responsive p-0">
@@ -57,13 +66,18 @@ import {formatDate} from "@/utils";
 import { getAllHistory } from "@/views/Piscina/piscina_service";
 export default {
   name: "HistoryPisc",
-
   data(){
     return {
       tableHistory: [],
     }
   },
   methods :{
+    getPageCadastrar() {
+      this.$router.push('/create_tratamento')
+    },
+    getPageManut() {
+      this.$router.push('/create_manutencao')
+    },
     getAllTratamento() {
       getAllHistory()
           .then((response) => {
@@ -94,5 +108,9 @@ export default {
     this.getAllTratamento();
   },
 };
-
 </script>
+<style>
+#btn-white{
+  width: 100% !important;
+}
+</style>

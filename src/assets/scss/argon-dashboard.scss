@@ -1,15 +1,3 @@
-// =========================================================
-// * Argon Dashboard 2 Pro - v2.0.0
-// =========================================================
-//
-// * Product Page: https://www.creative-tim.com/product/argon-dashboard-pro
-// * Copyright 2021 Creative Tim (https://www.creative-tim.com)
-//
-// Coded by www.creative-tim.com
-//
-// =========================================================
-//
-// * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 // Bootstrap Functions
 @import "argon-dashboard/bootstrap/functions";
@@ -28,3 +16,54 @@
 
 // Custom Variables
 @import "argon-dashboard/custom/styles";
+
+
+.btn-outline-primary{
+  color: #2dce89 !important;
+  border-color: #2dce89 !important;
+}
+
+.btn-primary{
+  background-image: linear-gradient(310deg, #2dce89 0%, #2dcecc 100%) !important;
+  color: #fff !important;
+}
+
+.baixa-color > button  {
+  background-color: #F3F3F7 !important;
+  color: #66666B !important;
+  border-radius: 10px !important;
+  padding: 10px 47px !important;
+}
+
+.media-color > button  {
+  background-color: #FFF2D2 !important;
+  color: #FFC01E !important;
+  border-radius: 10px !important;
+  padding: 10px 47px !important;
+}
+
+.alta-color > button  {
+  background-color: #FFEBEE !important;
+  color: #FF4848 !important;
+  border-radius: 10px !important;
+  padding: 10px 47px !important;
+}
+
+.baixa-color-menu  {
+  background-color: #F3F3F7 !important;
+  color: #66666B !important;
+  border-radius: 10px !important;
+}
+
+.media-color-menu  {
+  background-color: #FFF2D2 !important;
+  color: #FFC01E !important;
+  border-radius: 10px !important;
+}
+
+.alta-color-menu  {
+  background-color: #FFEBEE !important;
+  color: #FF4848 !important;
+  border-radius: 10px !important;
+}
+
