@@ -50,7 +50,10 @@ export default {
   data() {
     return {
       type: 'Manutenção',
+      estado: "Pendente",
       forms: [
+        {label: "Nome Responsavel", type: "text", value: "", placeholder: "Responsavel Pela Anotação", error: "", errorMessage: "", col: "col-md-6"},
+        {label: "Nome Da Empresa", type: "text", value: "", placeholder: "Empresa Do Responsavel", error: "", errorMessage: "", col: "col-md-6"},
         {label: "Titulo", type: "text", value: "", placeholder: "Titulo Para Manutenção", error: "", errorMessage: "", col: "col-md-9"},
         {label: "Prioridade",type: "dropdown", value: "Baixa", error: "", options: ['Média', 'Alta'], col: "col-md-3"},
         {label: "Descrição", type: "textarea", value: "", placeholder: "Descrição Da Manutenção", error: "", errorMessage: "", col: "col-md-12"},
@@ -60,9 +63,12 @@ export default {
   methods: {
     createManut() {
       let manutencao = {
-        'titulo': this.forms[0].value,
-        'prioridade': this.forms[1].value,
-        'descricao': this.forms[2].value,
+        'estado': this.estado,
+        'nome_piscineiro': this.forms[0].value,
+        'nome_empresa': this.forms[1].value,
+        'titulo': this.forms[2].value,
+        'prioridade': this.forms[3].value,
+        'descricao': this.forms[4].value,
         'type': this.type,
       };
       createManutencao(manutencao)

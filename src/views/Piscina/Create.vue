@@ -39,7 +39,8 @@ export default {
   },
   data() {
     return {
-      type: true,
+      type: "Tratamento",
+      estado: "Pendente",
       formsTratamento: [
         {label: "Nome", type: "text", value: "", placeholder: "Nome Do Piscineiro", error: "", errorMessage: "", col: "col-md-4"},
         {label: "Empresa", type: "text", value: "", placeholder: "Nome Da Empresa", error: "", errorMessage: "", col: "col-md-4"},
@@ -55,6 +56,7 @@ export default {
       debugger
       const tratamento = {
         'type': this.type,
+        'estado': this.estado,
         'nome_piscineiro': this.formsTratamento[0].value,
         'nome_empresa': this.formsTratamento[1].value,
         'cloro': parseFloat(this.formsTratamento[2].value.replace(/,/g, '.')),

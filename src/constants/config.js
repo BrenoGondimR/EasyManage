@@ -15,7 +15,9 @@ export const findFuncionariosUrl = apisUrl + 'funcionarios';
 // Piscina
 export const criarTratamento = apisUrl + 'piscina/create';
 export const criarManutencao = apisUrl + 'piscina/manutencao/create';
+export const updateEstadoManut = apisUrl + 'piscina/estado/update';
 export const getHistory = apisUrl + 'piscina';
+export const getHistoryManutencao = apisUrl + 'piscina/manutencao';
 
 
 // Exporte as constantes para serem usadas em outros arquivos

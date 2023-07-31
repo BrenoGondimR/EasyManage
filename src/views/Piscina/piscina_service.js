@@ -1,11 +1,15 @@
 import axios from "axios";
 import {
     criarManutencao,
-    criarTratamento, getHistory
+    criarTratamento, getHistory, getHistoryManutencao, updateEstadoManut
 } from "@/constants/config";
 
 export const getAllHistory = () => {
     return axios.get(getHistory);
+};
+
+export const getAllHistoryManut = () => {
+    return axios.get(getHistoryManutencao);
 };
 
 export const createTratamento = (data) => {
@@ -13,5 +17,8 @@ export const createTratamento = (data) => {
 };
 export const createManutencao = (data) => {
     return axios.post(criarManutencao, data);
+};
+export const updateEstado = (data) => {
+    return axios.post(updateEstadoManut, data);
 };
 

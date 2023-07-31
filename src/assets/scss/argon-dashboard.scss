@@ -17,6 +17,9 @@
 // Custom Variables
 @import "argon-dashboard/custom/styles";
 
+// Texts Fonts
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&family=Nunito+Sans:opsz,wght@6..12,600&family=Roboto+Condensed:wght@300&display=swap');
+
 
 .btn-outline-primary{
   color: #2dce89 !important;
@@ -67,3 +70,69 @@
   border-radius: 10px !important;
 }
 
+.bar-separator{
+  width: 100%;
+  height: 5px;
+  opacity: 25%;
+  background-color: #bdbdbd !important;
+}
+
+.card-pendente{
+  background-color: #FFEBEE;
+  padding: 7px;
+  border-radius: 5px;
+  font-family: 'Nunito Sans', sans-serif !important;
+  color: #FF4848 !important;
+  text-align: center;
+  font-size: 14px !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+}
+
+.card-ajustado{
+  background-color: #E7F6E8;
+  padding: 7px;
+  border-radius: 5px;
+  font-family: 'Nunito Sans', sans-serif !important;
+  color: #56C261 !important;
+  text-align: center;
+  font-size: 14px !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+}
+
+.card-baixa{
+  background-color: #F3F3F7 !important;
+  color: #66666B !important;
+  padding: 7px 15px;
+  border-radius: 5px;
+  font-family: 'Nunito Sans', sans-serif !important;
+  text-align: center;
+  font-size: 14px !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+}
+
+.card-media{
+  background-color: #FFF2D2 !important;
+  color: #FFC01E !important;
+  padding: 7px 15px;
+  border-radius: 5px;
+  font-family: 'Nunito Sans', sans-serif !important;
+  text-align: center;
+  font-size: 14px !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+}
+
+.card-alta{
+  background-color: #FFEBEE !important;
+  color: #FF4848 !important;
+  padding: 7px 15px;
+  border-radius: 5px;
+  font-family: 'Nunito Sans', sans-serif !important;
+  text-align: center;
+  font-size: 14px !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+}
