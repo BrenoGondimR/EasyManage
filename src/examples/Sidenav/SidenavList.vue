@@ -30,6 +30,19 @@
       </li>
       <li class="nav-item">
         <sidenav-item
+          url="/fornecedores"
+          :class="getRoute() === 'tables' ? 'active' : ''"
+          :navText="this.$store.state.isRTL ? 'الجداول' : 'Fornecedores'"
+        >
+          <template v-slot:icon>
+            <i
+              class="ni ni-box-2 text-sm opacity-10" style="color: orange !important;"
+            ></i>
+          </template>
+        </sidenav-item>
+      </li>
+      <li class="nav-item">
+        <sidenav-item
           url="/piscina"
           :class="getRoute() === 'piscina' ? 'active' : ''"
           :navText="'Piscina'"

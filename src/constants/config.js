@@ -12,6 +12,9 @@ export const editFuncionarioUrl = apisUrl + 'funcionarios/edit';
 export const createFuncionarioUrl = apisUrl + 'funcionarios/create';
 export const findFuncionariosUrl = apisUrl + 'funcionarios';
 
+// Fornecedores
+export const createFornecedorUrl = apisUrl + 'fornecedores/create';
+export const getHistoryFornecedores = apisUrl + 'fornecedores';
 // Piscina
 export const criarTratamento = apisUrl + 'piscina/create';
 export const criarManutencao = apisUrl + 'piscina/manutencao/create';

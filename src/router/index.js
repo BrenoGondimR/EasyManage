@@ -6,6 +6,8 @@ import CreateTrat from "../views/Piscina/Create.vue";
 import Piscina from "../views/Piscina/index.vue";
 import CreateFunc from "../views/Funcionarios/Create";
 import CreateManut from "../views/Piscina/Manutencao";
+import Fornecedores from "../views/Fornecedores/index.vue";
+import CreateForne from "../views/Fornecedores/create.vue";
 
 const routes = [
   {
@@ -29,9 +31,19 @@ const routes = [
     component: Funcionarios,
   },
   {
+    path: "/fornecedores",
+    name: "Fornecedores",
+    component: Fornecedores,
+  },
+  {
     path: "/create_tratamento",
     name: "Create Tratamento",
     component: CreateTrat,
+  },
+  {
+    path: "/create_fornecedor",
+    name: "Create Fornecedor",
+    component: CreateForne,
   },
   {
     path: "/piscina",
