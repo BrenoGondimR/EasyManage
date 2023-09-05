@@ -17,13 +17,26 @@
       </li>
       <li class="nav-item">
         <sidenav-item
-          url="/funcionarios"
+          url="/manutencoes"
           :class="getRoute() === 'tables' ? 'active' : ''"
-          :navText="this.$store.state.isRTL ? 'الجداول' : 'Funcionarios'"
+          :navText="this.$store.state.isRTL ? 'الجداول' : 'Manutenções'"
         >
           <template v-slot:icon>
             <i
               class="ni ni-single-02 text-warning text-sm opacity-10"
+            ></i>
+          </template>
+        </sidenav-item>
+      </li>
+      <li class="nav-item">
+        <sidenav-item
+            url="/treinamentos"
+            :class="getRoute() === 'tables' ? 'active' : ''"
+            :navText="this.$store.state.isRTL ? 'الجداول' : 'Treinamentos'"
+        >
+          <template v-slot:icon>
+            <i
+                class="ni ni-single-copy-04 text-sm opacity-10" style="color: #179417 !important;"
             ></i>
           </template>
         </sidenav-item>

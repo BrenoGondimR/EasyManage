@@ -1,11 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Dashboard from "../views/Quartos/Dashboard.vue";
-import Funcionarios from "../views/Funcionarios/Funcionarios"
+import Manutencoes from "../views/Manutenções/index.vue"
+import Treinamentos from "../views/Treinamentos/index.vue"
 import Signin from "../views/Signin.vue";
 import CreateTrat from "../views/Piscina/Create.vue";
 import Piscina from "../views/Piscina/index.vue";
-import CreateFunc from "../views/Funcionarios/Create";
 import CreateManut from "../views/Piscina/Manutencao";
+import CreateManutGeral from "../views/Manutenções/create.vue";
+import CreateTreinamento from "../views/Treinamentos/create.vue";
 import Fornecedores from "../views/Fornecedores/index.vue";
 import CreateForne from "../views/Fornecedores/create.vue";
 
@@ -26,9 +28,24 @@ const routes = [
     component: CreateManut,
   },
   {
-    path: "/funcionarios",
-    name: "Funcionarios",
-    component: Funcionarios,
+    path: "/create_manutencao_geral",
+    name: "Manutenção",
+    component: CreateManutGeral,
+  },
+  {
+    path: "/create_treinamento",
+    name: "Treinamento",
+    component: CreateTreinamento,
+  },
+  {
+    path: "/manutencoes",
+    name: "Manutencoes",
+    component: Manutencoes,
+  },
+  {
+    path: "/treinamentos",
+    name: "Treinamentos",
+    component: Treinamentos,
   },
   {
     path: "/fornecedores",
@@ -54,11 +71,6 @@ const routes = [
     path: "/signin",
     name: "Signin",
     component: Signin,
-  },
-  {
-    path: "/create_funcionario",
-    name: "Create Funcionario",
-    component: CreateFunc,
   },
   
 ];

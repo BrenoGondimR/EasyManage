@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import {getFuncionarios} from "@/views/Funcionarios/funcionarios_service";
+import {getFuncionarios} from "@/views/Manutenções/manutencoes_service";
 import {formatDate} from "@/utils";
 export default {
   name: "authors-table",
