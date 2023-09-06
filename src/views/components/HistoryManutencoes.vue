@@ -46,6 +46,8 @@
             <td class="align-middle text-center">
               <p class="mb-0 text-sm">{{ history.status }}</p>
             </td>
+            <td class="align-middle text-center">
+            </td>
           </tr>
           </tbody>
         </table>

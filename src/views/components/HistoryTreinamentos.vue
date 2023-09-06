@@ -38,13 +38,27 @@
               <p class="mb-0 text-sm">{{ history.carga_horaria }}</p>
             </td>
             <td class="align-middle text-center">
-              <p class="mb-0 text-sm">{{ history.data }}</p>
+              <p class="mb-0 text-sm">{{ history.data_treinamento }}</p>
             </td>
             <td class="align-middle text-center">
               <p class="mb-0 text-sm">{{ history.tipo }}</p>
             </td>
             <td class="align-middle text-center">
               <p class="mb-0 text-sm">{{ history.status }}</p>
+            </td>
+            <td class="align-middle text-center">
+              <button @click="toggleRow(index)" class="btn btn-link" style="margin-bottom: 0 !important;">
+                <i :class="['fa', expandedRow === index ? 'fa-chevron-up' : 'fa-chevron-down']"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6">
+              <div v-if="expandedRow !== null" class="expanded-details">
+                <p><strong>Observações:</strong> {{ tableHistory[expandedRow].observacoes }}</p>
+                <p><strong>Funcionários:</strong> {{ tableHistory[expandedRow].funcionarios }}</p>
+                <p><strong>Características:</strong> {{ tableHistory[expandedRow].caracteristica_treinamento }}</p>
+              </div>
             </td>
           </tr>
           </tbody>
@@ -55,7 +69,7 @@
 </template>
 
 <script>
-import {getAllHistory} from "@/views/Manutenções/manutencoes_service";
+import {getAllHistory} from "@/views/Treinamentos/treinamentos_service";
 import {formatDate} from "@/utils";
 export default {
   name: "HistoryPisc",
@@ -63,6 +77,7 @@ export default {
     return {
       tableHistory: [],
       dropdownValue: '',
+      expandedRow: null,
       tableHistoryManutencao: [],
       isFull: false,
     }
@@ -71,20 +86,27 @@ export default {
     getPageCreate() {
       this.$router.push('/create_treinamento')
     },
-    getAllManutencoes() {
+    toggleRow(index) {
+      // Alternar a linha expandida com base no índice clicado
+      this.expandedRow = this.expandedRow === index ? null : index;
+    },
+    getAllTrepinamentos() {
       getAllHistory()
           .then((response) => {
             debugger
             if (response.data.data) {
               this.tableHistory = [];
-              response.data.data.forEach((manutencao) => {
+              response.data.data.forEach((treinamento) => {
                 // Adicione cada funcionário à lista
                 this.tableHistory.push({
-                  local: manutencao.local,
-                  tipo: manutencao.tipo,
-                  data_ocorrencia: formatDate(manutencao.data_ocorrencia),
-                  data_resolucao: formatDate(manutencao.data_resolucao) ,
-                  status: manutencao.status,
+                  treinamento: treinamento.treinamento,
+                  carga_horaria: treinamento.carga_horaria,
+                  tipo: treinamento.tipo,
+                  data_treinamento: formatDate(treinamento.data_treinamento),
+                  status: treinamento.status,
+                  observacoes: treinamento.observacoes,
+                  funcionarios: treinamento.funcionarios,
+                  caracteristica_treinamento: treinamento.caracteristica_treinamento,
                 });
               });
             }
@@ -96,7 +118,7 @@ export default {
     },
   },
   created() {
-    this.getAllManutencoes();
+    this.getAllTrepinamentos();
   },
 };
 </script>

@@ -20,3 +20,6 @@ export const updateEstadoManut = apisUrl + 'piscina/estado/update/';
 export const getHistory = apisUrl + 'piscina';
 export const getHistoryManutencao = apisUrl + 'piscina/manutencao';
 
+// Treinamentos
+export const criarTreinamento = apisUrl + 'treinamentos/create';
+export const getHistoryTreinamentos = apisUrl + 'treinamentos';
