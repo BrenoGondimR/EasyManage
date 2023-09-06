@@ -23,3 +23,9 @@ export const getHistoryManutencao = apisUrl + 'piscina/manutencao';
 // Treinamentos
 export const criarTreinamento = apisUrl + 'treinamentos/create';
 export const getHistoryTreinamentos = apisUrl + 'treinamentos';
+
+// Financeiro
+export const criarFinanceiro = apisUrl + 'financeiro/create';
+export const getAllCustos = apisUrl + 'financeiro/custos';
+export const getAllGanhos = apisUrl + 'financeiro/ganhos';
+export const getAllRenda = apisUrl + 'financeiro/renda';

@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Dashboard from "../views/Quartos/Dashboard.vue";
+import Dashboard from "../views/Financeiro/Dashboard.vue";
 import Manutencoes from "../views/Manutenções/index.vue"
 import Treinamentos from "../views/Treinamentos/index.vue"
 import Signin from "../views/Signin.vue";
@@ -10,6 +10,8 @@ import CreateManutGeral from "../views/Manutenções/create.vue";
 import CreateTreinamento from "../views/Treinamentos/create.vue";
 import Fornecedores from "../views/Fornecedores/index.vue";
 import CreateForne from "../views/Fornecedores/create.vue";
+import CreateCustos from "../views/Financeiro/create_custos.vue";
+import CreateGanhos from "../views/Financeiro/create_ganhos.vue";
 
 const routes = [
   {
@@ -31,6 +33,16 @@ const routes = [
     path: "/create_manutencao_geral",
     name: "Manutenção",
     component: CreateManutGeral,
+  },
+  {
+    path: "/create_custos",
+    name: "Custos",
+    component: CreateCustos,
+  },
+  {
+    path: "/create_ganhos",
+    name: "Ganhos",
+    component: CreateGanhos,
   },
   {
     path: "/create_treinamento",

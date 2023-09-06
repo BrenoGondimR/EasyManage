@@ -8,10 +8,10 @@
         <sidenav-item
           url="/dashboard-default"
           :class="getRoute() === 'dashboard-default' ? 'active' : ''"
-          :navText="this.$store.state.isRTL ? 'لوحة القيادة' : 'Dashboard'"
+          :navText="this.$store.state.isRTL ? 'لوحة القيادة' : 'Financeiro'"
         >
           <template v-slot:icon>
-            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+            <i class="ni ni-money-coins text-primary text-sm opacity-10"></i>
           </template>
         </sidenav-item>
       </li>
