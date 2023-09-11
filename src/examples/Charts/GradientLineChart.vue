@@ -25,7 +25,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: "Grafico De Hospedes",
+      default: "Grafico Financeiro",
     },
     detail1: {
       type: String,

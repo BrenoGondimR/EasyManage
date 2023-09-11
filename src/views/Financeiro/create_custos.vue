@@ -7,7 +7,8 @@
             <div v-for="(form, index) in forms" :key="index" :class="form.col">
               <label>{{ form.label }}</label>
               <div>
-                <input v-if="form.type === 'text'" v-model="form.value" :type="form.type" :placeholder="form.placeholder" class="form-control" @input="restrictToNumbers"/>
+                <input v-if="form.type === 'text'" v-model="form.value" :type="form.type" :placeholder="form.placeholder" class="form-control" @input="restrictToNumbers(index)"/>
+                <input v-else-if="form.type === 'data'" v-model="form.value" :type="form.type" :placeholder="form.placeholder" class="form-control" @input="formatarDataInput"/>
               </div>
             </div>
             <div class="row mt-4" style="justify-content: right;">
@@ -37,7 +38,8 @@ export default {
   data() {
     return {
       forms: [
-        {label: "Custos", type: "text", value: "", placeholder: "Custos do mes", error: "", errorMessage: "", col: "col-md-12"},
+        {label: "Custos", type: "text", value: "", placeholder: "Custos do mes", error: "", errorMessage: "", col: "col-md-6"},
+        { label: "Data", type: "data", value: "", placeholder: "Data (DD/MM/YYYY)", col: "col-md-6" },
       ]
     };
   },
@@ -45,13 +47,52 @@ export default {
     getPage() {
       this.$router.push('/dashboard-default')
     },
+    formatarDataInput() {
+      // Obtém o valor atual do campo
+      let value = this.forms[1].value;
+
+      // Remove caracteres não numéricos
+      value = value.replace(/\D/g, '');
+
+      // Aplica a máscara DD/MM/YYYY
+      if (value.length >= 2) {
+        value = value.substring(0, 2) + '/' + value.substring(2);
+      }
+      if (value.length >= 5) {
+        value = value.substring(0, 5) + '/' + value.substring(5, 9);
+      }
+
+      // Atualiza o valor do campo
+      this.forms[1].value = value;
+    },
+    isValidDate(dateString) {
+      // Validação básica para a data (formato DD/MM/YYYY)
+      const pattern = /^\d{2}\/\d{2}\/\d{4}$/;
+      if (!pattern.test(dateString)) {
+        return false;
+      }
+
+      const parts = dateString.split("/");
+      const day = parseInt(parts[0], 10);
+      const month = parseInt(parts[1], 10);
+      const year = parseInt(parts[2], 10);
+
+      if (year < 1000 || year > 9999 || month == 0 || month > 12) {
+        return false;
+      }
+
+      const daysInMonth = new Date(year, month, 0).getDate();
+      return day <= daysInMonth;
+    },
     restrictToNumbers() {
       // Remove todos os caracteres não numéricos do valor do input
       this.forms[0].value = this.forms[0].value.replace(/[^0-9]/g, '');
     },
     createFinanceiro() {
+      const dataInput = new Date(this.forms[1].value);
       const custos = {
         'custos': parseFloat(this.forms[0].value),
+        'data': dataInput,
       };
 
       // Chamar a função para enviar a requisição POST
@@ -66,7 +107,12 @@ export default {
             console.error(error);
           });
     },
-  }
+  },
+  computed: {
+    isFormInvalid() {
+      return isNaN(parseFloat(this.forms[0].value)) || !this.isValidDate(this.forms[1].value);
+    },
+  },
 };
 </script>
 
