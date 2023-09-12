@@ -167,7 +167,7 @@
 .card-media{
   border: 1px solid var(--laranja-light-100, #FFDFB6);
   background: var(--laranja-light-50, #FFF2E2);
-  color: var(--laranja-light-500, #FF952B);
+  color: var(--laranja-light-500, #FF952B) !important;
   padding: 5px 10px;
   border-radius: 5px;
   font-family: 'Nunito Sans', sans-serif !important;

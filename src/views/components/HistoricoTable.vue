@@ -2,7 +2,7 @@
   <div class="card">
     <div class="row" style="display: flex; justify-content: space-between">
       <b-col sm="7" class="mb-2">
-        <span class="h3 font-weight-semibold">Historico Piscina</span>
+        <span class="h3 font-weight-semibold">Histórico Piscina</span>
       </b-col>
       <b-col md="5" style="justify-content: end !important;">
         <div style="display: flex; gap: 1rem">
