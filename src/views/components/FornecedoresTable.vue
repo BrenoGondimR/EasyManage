@@ -21,6 +21,7 @@
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cidade</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Contato</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nota</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
           </tr>
           </thead>
           <tbody>
@@ -40,6 +41,9 @@
             </td>
             <td class="align-middle text-center">
               <p class="mb-0 text-sm">{{ history.nota }}</p>
+            </td>
+            <td class="align-middle text-center">
+              <i @click="editFornecedor(history.ID)" class="ni ni-settings-gear-65" style="cursor: pointer !important;"></i>
             </td>
           </tr>
           </tbody>
@@ -65,6 +69,9 @@ export default {
     getPageCreate() {
       this.$router.push('/create_fornecedor')
     },
+    editFornecedor(id) {
+      this.$router.push(`/edit_fornecedor/${id}`);
+    },
     getAllFornecedores() {
       getAllFornecedores()
         .then((response) => {
@@ -73,6 +80,7 @@ export default {
             response.data.data.forEach((fornecedor) => {
               // Adicione cada funcionário à lista
               this.tableHistory.push({
+                ID: fornecedor._id,
                 fornecedor: fornecedor.fornecedor,
                 cidade: fornecedor.cidade,
                 contato: fornecedor.contato,

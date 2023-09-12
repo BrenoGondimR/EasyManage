@@ -42,7 +42,7 @@
                   <button id="btn-dark" @click="getPage" class="btn w-100 px-3 mb-2 bg-gradient-success">Cancelar</button>
                 </div>
                 <div class="col-6">
-                  <button id="btn-white" @click="createTreinamento"  class="btn w-100 px-3 mb-2 btn-outline-success">Salvar</button>
+                  <button id="btn-white" @click="updateTreinamento"  class="btn w-100 px-3 mb-2 btn-outline-success">Salvar</button>
                 </div>
               </div>
             </div>
@@ -55,16 +55,18 @@
 
 <script>
 
-import { createTreinamento } from "@/views/Treinamentos/treinamentos_service";
+import { editTreinamento, getTreinamentoId} from "@/views/Treinamentos/treinamentos_service";
+import {formatDate} from "@/utils";
 
 export default {
-  name: "create_treinamento",
+  name: "edit_treinamento",
   components: {
 
   },
   data() {
     return {
-      status: 'Andamento',
+      status: '',
+      ID: '',
       forms: [
         {label: "Treinamento", type: "text", value: "", placeholder: "Necessidade de treinamento", error: "", errorMessage: "", col: "col-md-6"},
         {label: "Data Treinamento", type: "data", value: "", placeholder: "Data", error: "", errorMessage: "", col: "col-md-6"},
@@ -80,14 +82,35 @@ export default {
     getPage() {
       this.$router.push('/treinamentos')
     },
-    createTreinamento() {
+    getAllInfosTreinamento() {
+      console.log(this.ID)
+      getTreinamentoId(this.ID)
+          .then((response) => {
+            debugger
+            // Supondo que você deseja preencher apenas com o primeiro registro obtido
+            const treinamento = response.data.data;
+            this.forms[0].value = treinamento.treinamento;
+            this.forms[1].value = formatDate(treinamento.data_treinamento);
+            this.forms[2].value = treinamento.carga_horaria;
+            this.forms[3].value = treinamento.caracteristica_treinamento;
+            this.forms[4].value = treinamento.funcionarios;
+            this.forms[5].value = treinamento.tipo;
+            this.forms[6].value = treinamento.observacoes;
+            this.status = treinamento.status;
+          })
+          .catch((error) => {
+            // Tratar erros aqui, caso ocorram
+            console.error(error);
+          });
+    },
+    updateTreinamento() {
       // Obtenha a data como um objeto JavaScript Date
       // Split the date into day, month, and year
       const parts = this.forms[1].value.split('/');
       const dia = parts[0];
       const mes = parts[1];
       const ano = parts[2];
-
+      let id = this.ID
       // Format the date as "AAAA-MM-DD" to ensure it's correctly parsed by Go's time package
       const dataFormatada = `${ano}-${mes}-${dia}T00:00:00Z`;
       let manutencao = {
@@ -100,7 +123,7 @@ export default {
         'observacoes': this.forms[6].value,
         'status': this.status,
       };
-      createTreinamento(manutencao)
+      editTreinamento(manutencao, id)
           .then((response) => {
             console.log(response.data);
             this.$router.push("/treinamentos");
@@ -110,7 +133,6 @@ export default {
             console.error(error);
           });
     },
-
     getStatusText(status) {
       // Retorna o texto com base no valor atual
       if (status === 'Baixa') {
@@ -179,6 +201,10 @@ export default {
         form.options = form.options.filter((option) => option !== selectedPriority);
       }
     },
+  },
+  created() {
+    this.ID = this.$route.params.id;
+    this.getAllInfosTreinamento()
   }
 };
 </script>

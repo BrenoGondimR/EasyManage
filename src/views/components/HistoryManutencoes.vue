@@ -49,6 +49,7 @@
               </b-dropdown>
             </td>
             <td class="align-middle text-center">
+              <i @click="editManutencao(history.ID)" class="ni ni-settings-gear-65" style="cursor: pointer !important;"></i>
             </td>
           </tr>
           </tbody>
@@ -74,6 +75,9 @@ export default {
   methods :{
     getPageCreate() {
       this.$router.push('/create_manutencao_geral')
+    },
+    editManutencao(id) {
+      this.$router.push(`/edit_manutencao/${id}`);
     },
     toggleDropdownValue(id) {
       debugger

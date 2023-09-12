@@ -10,10 +10,14 @@ if (window.location.host.split(":")[0] === "easymanage.com.br") {
 export const createManutencoesUrl = apisUrl + 'manutencoes/create';
 export const findManutencoesUrl = apisUrl + 'manutencoes';
 export const updateStatusManut = apisUrl + 'manutencoes/status/update/';
+export const updateManut = apisUrl + 'manutencoes/edit/update/';
+export const getManut = apisUrl + 'manutencoes/edit/get/';
 
 // Fornecedores
 export const createFornecedorUrl = apisUrl + 'fornecedores/create';
 export const getHistoryFornecedores = apisUrl + 'fornecedores';
+export const getForne = apisUrl + 'fornecedores/edit/get/';
+export const updateForne = apisUrl + 'fornecedores/edit/update/';
 // Piscina
 export const criarTratamento = apisUrl + 'piscina/create';
 export const criarManutencao = apisUrl + 'piscina/manutencao/create';
@@ -25,6 +29,8 @@ export const getHistoryManutencao = apisUrl + 'piscina/manutencao';
 export const criarTreinamento = apisUrl + 'treinamentos/create';
 export const getHistoryTreinamentos = apisUrl + 'treinamentos';
 export const updateStatusTreinamentos = apisUrl + 'treinamentos/status/update/';
+export const getTreinamento = apisUrl + 'treinamentos/edit/get/';
+export const updateTreinamento = apisUrl + 'treinamentos/edit/update/';
 
 // Financeiro
 export const criarFinanceiro = apisUrl + 'financeiro/create';

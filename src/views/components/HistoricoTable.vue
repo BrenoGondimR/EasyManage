@@ -6,11 +6,8 @@
       </b-col>
       <b-col md="5" style="justify-content: end !important;">
         <div style="display: flex; gap: 1rem">
-          <b-button style="border-radius: 10px;" class="w-100 btn-create" variant="outline-primary" @click="getPageCadastrar">
+          <b-button style="border-radius: 10px; cursor: pointer" class="w-100 btn-create" variant="primary" @click="getPageCadastrar">
             Tratamento
-          </b-button>
-          <b-button style="border-radius: 10px;" class="w-100 btn-create" variant="primary" @click="getPageManut">
-            Manutenção
           </b-button>
         </div>
       </b-col>
@@ -52,51 +49,6 @@
             </td>
             <td class="align-middle text-center">
               <span class="text-secondary text-xs font-weight-bold">{{ history.history }}</span>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div v-if="this.isFull === true" class="card-body px-0 pt-0 pb-2 mt-4">
-      <div class="table-responsive p-0">
-        <table class="table align-items-center mb-0">
-          <thead>
-          <tr>
-            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Responsavel</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Titulo</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Descrição</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Data</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Prioridade</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Estado</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr v-for="(history, index) in tableHistoryManutencao" :key="index">
-            <td>
-              <div class="d-flex px-2 py-1">
-                <div class="d-flex flex-column justify-content-center">
-                  <h6 class="mb-0 text-sm">{{ history.nome_piscineiro }}</h6>
-                  <p class="text-xs text-secondary mb-0">{{ history.nome_empresa }}</p>
-                </div>
-              </div>
-            </td>
-            <td class="align-middle text-center">
-              <p class="mb-0 text-sm">{{ history.titulo }}</p>
-            </td>
-            <td class="align-middle text-center">
-              <p class="mb-0 text-sm">{{ history.descricao }}</p>
-            </td>
-            <td class="align-middle text-center">
-              <p class="mb-0 text-sm">{{ history.history }}</p>
-            </td>
-            <td class="align-middle text-center">
-              <span class="text-secondary text-xs font-weight-bold" :class="getPriorityClass(history.prioridade)">{{ history.prioridade }}</span>
-            </td>
-            <td class="align-middle text-center">
-              <b-dropdown v-model="dropdownValue" :class="getStatusClass(history.estado)" :text="history.estado" class="mt-2" :menu-class="getMenuClass(history.estado)">
-                <b-dropdown-item @click="toggleDropdownValue(history.ID)">{{ history.estado === 'Pendente' ? this.dropdownValue = 'Ajustado' : this.dropdownValue = 'Pendente' }}</b-dropdown-item>
-              </b-dropdown>
             </td>
           </tr>
           </tbody>

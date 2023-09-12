@@ -22,6 +22,7 @@
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Data</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tipo</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Detalhes</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
           </tr>
           </thead>
@@ -52,6 +53,9 @@
               <button @click="toggleRow(index)" class="btn btn-link" style="margin-bottom: 0 !important;">
                 <i :class="['fa', expandedRow === index ? 'fa-chevron-up' : 'fa-chevron-down']"></i>
               </button>
+            </td>
+            <td class="align-middle text-center">
+              <i @click="editTreinamento(history.ID)" class="ni ni-settings-gear-65" style="cursor: pointer !important;"></i>
             </td>
           </tr>
           <tr>
@@ -91,6 +95,9 @@ export default {
     toggleRow(index) {
       // Alternar a linha expandida com base no índice clicado
       this.expandedRow = this.expandedRow === index ? null : index;
+    },
+    editTreinamento(id) {
+      this.$router.push(`/edit_treinamento/${id}`);
     },
     toggleDropdownValue(id) {
       debugger

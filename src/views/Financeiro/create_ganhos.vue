@@ -111,12 +111,19 @@ export default {
       return day <= daysInMonth;
     },
     createFinanceiro() {
-      const dataInput = new Date(this.forms[3].value);
+      // Split the date into day, month, and year
+      const parts = this.forms[3].value.split('/');
+      const dia = parts[0];
+      const mes = parts[1];
+      const ano = parts[2];
+
+      // Format the date as "AAAA-MM-DD" to ensure it's correctly parsed by Go's time package
+      const dataFormatada = `${ano}-${mes}-${dia}T00:00:00Z`;
       const custos = {
         'ganhos': parseFloat(this.forms[1].value),
         'origem': this.forms[0].value,
         'tipo_transacao': this.forms[2].value,
-        'data': dataInput,
+        'data': dataFormatada,
         'status': this.status,
       };
 

@@ -12,6 +12,9 @@ import Fornecedores from "../views/Fornecedores/index.vue";
 import CreateForne from "../views/Fornecedores/create.vue";
 import CreateCustos from "../views/Financeiro/create_custos.vue";
 import CreateGanhos from "../views/Financeiro/create_ganhos.vue";
+import EditManut from "../views/Manutenções/edit.vue";
+import EditTreinamento from "../views/Treinamentos/edit.vue";
+import EditFornecedor from "../views/Fornecedores/edit.vue";
 
 const routes = [
   {
@@ -28,6 +31,21 @@ const routes = [
     path: "/create_manutencao",
     name: "Manutenção Piscina",
     component: CreateManut,
+  },
+  {
+    path: '/edit_manutencao/:id',
+    name: 'Editar Manutencao',
+    component: EditManut,
+  },
+  {
+    path: '/edit_treinamento/:id',
+    name: 'Editar Treinamento',
+    component: EditTreinamento,
+  },
+  {
+    path: '/edit_fornecedor/:id',
+    name: 'Editar Fornecedor',
+    component: EditFornecedor,
   },
   {
     path: "/create_manutencao_geral",
