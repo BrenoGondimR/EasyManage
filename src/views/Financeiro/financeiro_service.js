@@ -1,5 +1,5 @@
 import axios from "axios";
-import {criarFinanceiro, getAllCustos, getAllGanhos, getAllRenda} from "@/constants/config";
+import {criarFinanceiro, getAllCustos, getAllFinanceiros, getAllGanhos, getAllRenda} from "@/constants/config";
 
 
 export const createFinanceiro = (bodyCupom) => {
@@ -14,4 +14,8 @@ export const getAllGanhosFinanceiro = () => {
 };
 export const getAllRendaFinanceiro = () => {
     return axios.get(getAllRenda);
+};
+
+export const getAllFinanceiro = () => {
+    return axios.get(getAllFinanceiros);
 };

@@ -7,8 +7,9 @@
             <div v-for="(form, index) in forms" :key="index" :class="form.col">
               <label>{{ form.label }}</label>
               <div>
-                <input v-if="form.type === 'text'" v-model="form.value" :type="form.type" :placeholder="form.placeholder" class="form-control" @input="restrictToNumbers(index)"/>
+                <input v-if="form.type === 'num'" v-model="form.value" :type="form.type" :placeholder="form.placeholder" class="form-control" @input="restrictToNumbers(index)"/>
                 <input v-else-if="form.type === 'data'" v-model="form.value" :type="form.type" :placeholder="form.placeholder" class="form-control" @input="formatarDataInput"/>
+                <input v-if="form.type === 'text'" v-model="form.value" :type="form.type" :placeholder="form.placeholder" class="form-control"/>
               </div>
             </div>
             <div class="row mt-4" style="justify-content: right;">
@@ -37,9 +38,12 @@ export default {
   },
   data() {
     return {
+      status: "Pago",
       forms: [
-        {label: "Custos", type: "text", value: "", placeholder: "Custos do mes", error: "", errorMessage: "", col: "col-md-6"},
-        { label: "Data", type: "data", value: "", placeholder: "Data (DD/MM/YYYY)", col: "col-md-6" },
+        {label: "Origem", type: "text", value: "", placeholder: "Origem Do Custo", error: "", errorMessage: "", col: "col-md-8"},
+        {label: "Custo", type: "num", value: "", placeholder: "Valor", error: "", errorMessage: "", col: "col-md-4"},
+        {label: "Tipo Transação", type: "text", value: "", placeholder: "Tipo Da Transação", error: "", errorMessage: "", col: "col-md-8"},
+        { label: "Data", type: "data", value: "", placeholder: "Data (DD/MM/YYYY)", col: "col-md-4" },
       ]
     };
   },
@@ -49,7 +53,7 @@ export default {
     },
     formatarDataInput() {
       // Obtém o valor atual do campo
-      let value = this.forms[1].value;
+      let value = this.forms[3].value;
 
       // Remove caracteres não numéricos
       value = value.replace(/\D/g, '');
@@ -63,7 +67,7 @@ export default {
       }
 
       // Atualiza o valor do campo
-      this.forms[1].value = value;
+      this.forms[3].value = value;
     },
     isValidDate(dateString) {
       // Validação básica para a data (formato DD/MM/YYYY)
@@ -86,13 +90,16 @@ export default {
     },
     restrictToNumbers() {
       // Remove todos os caracteres não numéricos do valor do input
-      this.forms[0].value = this.forms[0].value.replace(/[^0-9]/g, '');
+      this.forms[1].value = this.forms[1].value.replace(/[^0-9]/g, '');
     },
     createFinanceiro() {
-      const dataInput = new Date(this.forms[1].value);
+      const dataInput = new Date(this.forms[3].value);
       const custos = {
-        'custos': parseFloat(this.forms[0].value),
+        'custos': parseFloat(this.forms[1].value),
+        'origem': this.forms[0].value,
+        'tipo_transacao': this.forms[2].value,
         'data': dataInput,
+        'status': this.status,
       };
 
       // Chamar a função para enviar a requisição POST
@@ -110,7 +117,7 @@ export default {
   },
   computed: {
     isFormInvalid() {
-      return isNaN(parseFloat(this.forms[0].value)) || !this.isValidDate(this.forms[1].value);
+      return isNaN(parseFloat(this.forms[1].value)) || !this.isValidDate(this.forms[3].value);
     },
   },
 };

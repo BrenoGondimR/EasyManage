@@ -44,7 +44,7 @@ export default {
       formsTratamento: [
         {label: "Nome", type: "text", value: "", placeholder: "Nome Do Piscineiro", error: "", errorMessage: "", col: "col-md-4"},
         {label: "Empresa", type: "text", value: "", placeholder: "Nome Da Empresa", error: "", errorMessage: "", col: "col-md-4"},
-        {label: "Cloro", type: "text", value: "", placeholder: "Cloro Da Piscina", error: "", errorMessage: "", col: "col-md-4"},
+        {label: "Cloro (PPM)", type: "text", value: "", placeholder: "Cloro Da Piscina", error: "", errorMessage: "", col: "col-md-4"},
         {label: "Pha", type: "text", value: "", placeholder: "Pha Da Piscina", error: "", errorMessage: "", col: "col-md-6"},
         {label: "Alcalinidade", type: "text", value: "", placeholder: "Alcalinidade", error: "", errorMessage: "", col: "col-md-6"},
         {label: "Acidez", type: "text", value: "", placeholder: "Acidez Da Piscina", error: "", errorMessage: "", col: "col-md-12"},

@@ -34,6 +34,7 @@
             ></card>
           </div>
         </div>
+        <HistoryFinanceiro></HistoryFinanceiro>
         <div class="row">
           <div class="col-lg-12 mb-lg">
             <!-- line chart -->
@@ -56,11 +57,17 @@ import {
   getAllGanhosFinanceiro,
   getAllRendaFinanceiro
 } from "@/views/Financeiro/financeiro_service";
+import HistoryFinanceiro from "@/views/components/HistoryFinanceiro.vue";
 
 export default {
   name: "dashboard-default",
   data() {
     return {
+      filters: [
+        {key: "period", value: "", size: "3", placeholder: "Selecione a data", options: []},
+        {key: "method", value: "TODOS", size: "3", placeholder: "Selecione o metodo", options: []},
+        {key: "value", value: "TODOS", size: "3", placeholder: "Valor", options: []},
+      ],
       stats: {
         money: {
           title: "Ganhos",
@@ -149,6 +156,7 @@ export default {
     this.getAllRenda();
   },
   components: {
+    HistoryFinanceiro,
     Card,
     GradientLineChart,
   },

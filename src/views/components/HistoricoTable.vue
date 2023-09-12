@@ -124,7 +124,7 @@ export default {
       this.$router.push('/create_tratamento')
     },
     getPageManut() {
-      this.$router.push('/create_manutencao_geral')
+      this.$router.push('/create_manutencao')
     },
     toggleDropdownValue(id) {
       console.log(this.dropdownValue);

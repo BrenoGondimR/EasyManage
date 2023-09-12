@@ -26,7 +26,7 @@ const routes = [
   },
   {
     path: "/create_manutencao",
-    name: "Manutenção",
+    name: "Manutenção Piscina",
     component: CreateManut,
   },
   {

@@ -44,7 +44,9 @@
               <p class="mb-0 text-sm">{{ history.data_resolucao }}</p>
             </td>
             <td class="align-middle text-center">
-              <p class="mb-0 text-sm">{{ history.status }}</p>
+              <b-dropdown v-model="dropdownValue" :class="getStatusClass(history.status)" :text="history.status" class="mt-2" :menu-class="getMenuClass(history.status)">
+                <b-dropdown-item @click="toggleDropdownValue(history.ID)">{{ history.status === 'Pendente' ? this.dropdownValue = 'Ajustado' : this.dropdownValue = 'Pendente' }}</b-dropdown-item>
+              </b-dropdown>
             </td>
             <td class="align-middle text-center">
             </td>
@@ -57,7 +59,7 @@
 </template>
 
 <script>
-import {getAllHistory} from "@/views/Manutenções/manutencoes_service";
+import {getAllHistory, updateStatus} from "@/views/Manutenções/manutencoes_service";
 import {formatDate} from "@/utils";
 export default {
   name: "HistoryPisc",
@@ -73,6 +75,43 @@ export default {
     getPageCreate() {
       this.$router.push('/create_manutencao_geral')
     },
+    toggleDropdownValue(id) {
+      debugger
+      console.log(this.dropdownValue);
+      let estadoFitler = {
+        '_id': id,
+        'status': this.dropdownValue,
+      };
+      updateStatus(estadoFitler, id)
+          .then((response) => {
+            console.log(response.data);
+            this.getAllManutencoes();
+          })
+          .catch((error) => {
+            // Tratar erros aqui
+            console.error(error);
+          });
+    },
+    getStatusClass(status) {
+      // Retorna a classe apropriada com base no valor atual
+      if (status === 'Pendente') {
+        return 'card-pendente';
+      } else if (status === 'Ajustado') {
+        return 'card-ajustado';
+      } else {
+        return '';
+      }
+    },
+    getMenuClass(status) {
+      // Retorna a classe apropriada para o menu suspenso (dropdown-menu)
+      if (status === 'Pendente') {
+        return 'pendente-color-menu';
+      } else if (status === 'Ajustado') {
+        return 'ajustado-color-menu';
+      } else {
+        return '';
+      }
+    },
     getAllManutencoes() {
       getAllHistory()
           .then((response) => {
@@ -82,6 +121,7 @@ export default {
               response.data.data.forEach((manutencao) => {
                 // Adicione cada funcionário à lista
                 this.tableHistory.push({
+                  ID: manutencao._id,
                   local: manutencao.local,
                   tipo: manutencao.tipo,
                   data_ocorrencia: formatDate(manutencao.data_ocorrencia),

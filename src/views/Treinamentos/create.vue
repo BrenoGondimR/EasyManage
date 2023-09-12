@@ -69,7 +69,7 @@ export default {
         {label: "Treinamento", type: "text", value: "", placeholder: "Necessidade de treinamento", error: "", errorMessage: "", col: "col-md-6"},
         {label: "Data Treinamento", type: "data", value: "", placeholder: "Data", error: "", errorMessage: "", col: "col-md-6"},
         {label: "Carga horária", type: "text", value: "", placeholder: "Carga horaria", error: "", errorMessage: "", col: "col-md-9"},
-        { label: "Caracteristica do treinamento", type: "radio", value: "A", error: "", options: ['A', 'F'], col: "col-md-3" },
+        { label: "Caracteristica do treinamento", type: "radio", value: "Aperfeiçoamento", error: "", options: ['Aperfeiçoamento', 'Formação'], col: "col-md-3" },
         {label: "Funcionarios", type: "text", value: "", placeholder: "Funcionarios", error: "", errorMessage: "", col: "col-md-9"},
         {label: "Tipo",type: "dropdown2", value: "EP", error: "", options: ['IHEAD', 'IP'], col: "col-md-3"},
         {label: "Observações", type: "textarea", value: "", placeholder: "Observações do treinamento", error: "", errorMessage: "", col: "col-md-12"},
