@@ -125,9 +125,10 @@
 }
 
 .card-baixa{
-  background-color: #F3F3F7 !important;
+  border: 1px solid var(--preto-200, #E4E4EA);
+  background: var(--preto-100, #F3F3F7);
   color: #66666B !important;
-  padding: 7px 15px;
+  padding: 5px 10px;
   border-radius: 5px;
   font-family: 'Nunito Sans', sans-serif !important;
   text-align: center;
@@ -136,10 +137,38 @@
   font-weight: 600 !important;
 }
 
+.card-ganho{
+  background-color: #E8F7E9 !important;
+  color: #41BF43 !important;
+  border: 1px solid var(--verde-light-100, #C9ECC8);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-family: 'Nunito Sans', sans-serif !important;
+  text-align: center;
+  font-size: 14px !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+}
+
+.card-custo{
+  background-color: #FFE9ED !important;
+  color: #FE3232 !important;
+  border: 1px solid var(--vermelho-light-100, #FFC9CE);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-family: 'Nunito Sans', sans-serif !important;
+  text-align: center;
+  font-size: 14px !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+}
+
+
 .card-media{
-  background-color: #FFF2D2 !important;
-  color: #FFC01E !important;
-  padding: 7px 15px;
+  border: 1px solid var(--laranja-light-100, #FFDFB6);
+  background: var(--laranja-light-50, #FFF2E2);
+  color: var(--laranja-light-500, #FF952B);
+  padding: 5px 10px;
   border-radius: 5px;
   font-family: 'Nunito Sans', sans-serif !important;
   text-align: center;
@@ -149,9 +178,10 @@
 }
 
 .card-alta{
-  background-color: #FFEBEE !important;
-  color: #FF4848 !important;
-  padding: 7px 15px;
+  border: 1px solid var(--vermelho-light-100, #FFC9CE);
+  background: var(--vermelho-light-50, #FFE9ED);
+  color: #FE3232 !important;
+  padding: 5px 10px;
   border-radius: 5px;
   font-family: 'Nunito Sans', sans-serif !important;
   text-align: center;

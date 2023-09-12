@@ -18,6 +18,7 @@
 
 <script>
 import Chart from "chart.js/auto";
+import {getAllCGR} from "@/views/Financeiro/financeiro_service";
 
 export default {
   name: "gradient-line-chart",
@@ -37,90 +38,154 @@ export default {
     },
   },
 
-  mounted() {
-    var ctx1 = document.getElementById("chart-line").getContext("2d");
-
-    var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
-
-    gradientStroke1.addColorStop(1, "rgba(94, 114, 228, 0.2)");
-    gradientStroke1.addColorStop(0.2, "rgba(94, 114, 228, 0.0)");
-    gradientStroke1.addColorStop(0, "rgba(94, 114, 228, 0)");
-    new Chart(ctx1, {
-      type: "line",
-      data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [
-          {
-            label: "Mobile apps",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 0,
-            borderColor: "#4BB543 ",
-            backgroundColor: gradientStroke1,
-            // eslint-disable-next-line no-dupe-keys
-            borderWidth: 3,
-            fill: true,
-            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-            maxBarThickness: 6,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-        interaction: {
-          intersect: false,
-          mode: "index",
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
-            },
-            ticks: {
-              display: true,
-              padding: 10,
-              color: "#fbfbfb",
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: "normal",
-                lineHeight: 2,
-              },
-            },
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-              borderDash: [5, 5],
-            },
-            ticks: {
-              display: true,
-              color: "#ccc",
-              padding: 20,
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: "normal",
-                lineHeight: 2,
-              },
-            },
-          },
-        },
-      },
-    });
+  data(){
+    return {
+      ganhos: [],
+      custos: [],
+      renda: [],
+    }
   },
+
+  methods :{
+    getAllFinanceiroCGR() {
+      getAllCGR()
+          .then((result) => {
+            debugger
+            this.ganhos = result.data.ganhos;
+            this.custos = result.data.custos;
+            this.renda = result.data.renda;
+            this.renderChart()
+
+          })
+          .catch((error) => {
+            // Tratar erros aqui, caso ocorram
+            console.error(error);
+          });
+    },
+
+    renderChart() {
+      // Renderiza o gráfico com os totais mensais
+      // Certifique-se de que this.totaisMensais contenha os valores desejados
+      var ctx1 = document.getElementById("chart-line").getContext("2d");
+
+      var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+      gradientStroke1.addColorStop(1, "rgba(102, 204, 0, 0.2)"); // Verde mais forte
+      gradientStroke1.addColorStop(0.2, "rgba(102, 204, 0, 0.0)"); // Transparente
+      gradientStroke1.addColorStop(0, "rgba(102, 204, 0, 0)"); // Transparente
+
+      var gradientStroke2 = ctx1.createLinearGradient(0, 230, 0, 50);
+      gradientStroke2.addColorStop(1, "rgba(255, 0, 0, 0.2)"); // Vermelha para Custos
+      gradientStroke2.addColorStop(0.2, "rgba(255, 0, 0, 0.0)"); // Transparente para Custos
+      gradientStroke2.addColorStop(0, "rgba(255, 0, 0, 0)"); // Transparente para Custos
+
+      var gradientStroke3 = ctx1.createLinearGradient(0, 230, 0, 50);
+      gradientStroke3.addColorStop(1, "rgba(0, 0, 255, 0.2)"); // Azul para Renda
+      gradientStroke3.addColorStop(0.2, "rgba(0, 0, 255, 0.0)"); // Transparente para Renda
+      gradientStroke3.addColorStop(0, "rgba(0, 0, 255, 0)"); // Transparente para Renda
+
+
+      new Chart(ctx1, {
+        type: "line",
+        data: {
+          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+          datasets: [
+            {
+              label: "Ganhos",
+              tension: 0.4,
+              pointRadius: 0,
+              borderColor: "#318f29",
+              backgroundColor: gradientStroke1,
+              borderWidth: 3,
+              fill: true,
+              data: this.ganhos,
+              maxBarThickness: 6,
+            },
+            {
+              label: "Custos",
+              tension: 0.4,
+              pointRadius: 0,
+              borderColor: "#9b1d28",
+              backgroundColor: gradientStroke2,
+              borderWidth: 3,
+              fill: true,
+              data: this.custos,
+              maxBarThickness: 6,
+            },
+            {
+              label: "Renda",
+              tension: 0.4,
+              pointRadius: 0,
+              borderColor: "#2257af",
+              backgroundColor: gradientStroke3,
+              borderWidth: 3,
+              fill: true,
+              data: this.renda,
+              maxBarThickness: 6,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+          interaction: {
+            intersect: false,
+            mode: "index",
+          },
+          scales: {
+            y: {
+              grid: {
+                drawBorder: false,
+                display: true,
+                drawOnChartArea: true,
+                drawTicks: false,
+                borderDash: [5, 5],
+              },
+              ticks: {
+                display: true,
+                padding: 10,
+                color: "#fbfbfb",
+                font: {
+                  size: 11,
+                  family: "Open Sans",
+                  style: "normal",
+                  lineHeight: 2,
+                },
+              },
+            },
+            x: {
+              grid: {
+                drawBorder: false,
+                display: false,
+                drawOnChartArea: false,
+                drawTicks: false,
+                borderDash: [5, 5],
+              },
+              ticks: {
+                display: true,
+                color: "#ccc",
+                padding: 20,
+                font: {
+                  size: 11,
+                  family: "Open Sans",
+                  style: "normal",
+                  lineHeight: 2,
+                },
+              },
+            },
+          },
+        },
+      });
+    },
+  },
+
+  created() {
+    this.getAllFinanceiroCGR()
+  },
+
 };
 </script>

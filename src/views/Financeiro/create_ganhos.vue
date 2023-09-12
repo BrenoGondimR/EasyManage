@@ -42,7 +42,7 @@ export default {
   },
   data() {
     return {
-      status: "Pago",
+      status: "Ganho",
       forms: [
         {label: "Origem", type: "text", value: "", placeholder: "Origem Do Ganho", error: "", errorMessage: "", col: "col-md-8"},
         {label: "Ganho", type: "num", value: "", placeholder: "Valor", error: "", errorMessage: "", col: "col-md-4"},
@@ -56,8 +56,22 @@ export default {
       this.$router.push('/dashboard-default')
     },
     restrictToNumbers(index) {
-      // Remove todos os caracteres não numéricos do valor do input
-      this.forms[index].value = this.forms[index].value.replace(/[^0-9]/g, "");
+      let value = this.forms[index].value;
+
+      // Remove todos os caracteres não numéricos, exceto "." e ","
+      value = value.replace(/[^0-9.,]/g, '');
+
+      // Substitua "," por "." para garantir que seja um número decimal válido
+      value = value.replace(",", ".");
+
+      // Verifique se há mais de um ponto decimal e remova os extras
+      const decimalCount = (value.match(/\./g) || []).length;
+      if (decimalCount > 1) {
+        value = value.substring(0, value.lastIndexOf("."));
+      }
+
+      // Atualize o valor do campo
+      this.forms[index].value = value;
     },
     formatarDataInput() {
       // Obtém o valor atual do campo

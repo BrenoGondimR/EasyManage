@@ -36,7 +36,7 @@
         </div>
         <HistoryFinanceiro></HistoryFinanceiro>
         <div class="row">
-          <div class="col-lg-12 mb-lg">
+          <div class="col-lg-12 mb-lg mt-4">
             <!-- line chart -->
             <div class="card z-index-2">
               <gradient-line-chart />

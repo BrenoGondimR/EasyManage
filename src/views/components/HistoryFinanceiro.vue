@@ -36,7 +36,7 @@
               <p class="mb-0 text-sm">{{ history.valor }}</p>
             </td>
             <td class="align-middle text-center">
-              <p class="mb-0 text-sm">{{ history.status }}</p>
+              <span class="text-secondary text-xs font-weight-bold" :class="getPriorityClass(history.status)">{{ history.status }}</span>
             </td>
           </tr>
           </tbody>
@@ -103,6 +103,16 @@ export default {
         return '';
       }
     },
+    getPriorityClass(prioridade) {
+      switch (prioridade) {
+        case 'Ganho':
+          return 'card-ganho';
+        case 'Custo':
+          return 'card-custo';
+        default:
+          return '';
+      }
+    },
     getAllFinanceiro() {
       getAllFinanceiro()
           .then((response) => {
@@ -110,12 +120,18 @@ export default {
             if (response.data.data) {
               this.tableHistory = [];
               response.data.data.forEach((financeiro) => {
-                // Adicione cada funcionário à lista
+                // Formate o valor para formato monetário
+                const valorMonetario = parseFloat(financeiro.ganhos ? financeiro.ganhos : financeiro.custos).toLocaleString('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                });
+
+                // Adicione cada registro formatado à lista
                 this.tableHistory.push({
                   ID: financeiro._id,
                   origem: financeiro.origem,
                   tipo_transacao: financeiro.tipo_transacao,
-                  valor: financeiro.valor,
+                  valor: valorMonetario, // Valor formatado em moeda
                   data: formatDate(financeiro.data),
                   status: financeiro.status,
                 });

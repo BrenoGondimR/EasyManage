@@ -38,7 +38,7 @@ export default {
   },
   data() {
     return {
-      status: "Pago",
+      status: "Custo",
       forms: [
         {label: "Origem", type: "text", value: "", placeholder: "Origem Do Custo", error: "", errorMessage: "", col: "col-md-8"},
         {label: "Custo", type: "num", value: "", placeholder: "Valor", error: "", errorMessage: "", col: "col-md-4"},
@@ -88,9 +88,23 @@ export default {
       const daysInMonth = new Date(year, month, 0).getDate();
       return day <= daysInMonth;
     },
-    restrictToNumbers() {
-      // Remove todos os caracteres não numéricos do valor do input
-      this.forms[1].value = this.forms[1].value.replace(/[^0-9]/g, '');
+    restrictToNumbers(index) {
+      let value = this.forms[index].value;
+
+      // Remove todos os caracteres não numéricos, exceto "." e ","
+      value = value.replace(/[^0-9.,]/g, '');
+
+      // Substitua "," por "." para garantir que seja um número decimal válido
+      value = value.replace(",", ".");
+
+      // Verifique se há mais de um ponto decimal e remova os extras
+      const decimalCount = (value.match(/\./g) || []).length;
+      if (decimalCount > 1) {
+        value = value.substring(0, value.lastIndexOf("."));
+      }
+
+      // Atualize o valor do campo
+      this.forms[index].value = value;
     },
     createFinanceiro() {
       const dataInput = new Date(this.forms[3].value);
