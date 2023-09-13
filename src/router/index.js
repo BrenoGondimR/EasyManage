@@ -15,6 +15,8 @@ import CreateGanhos from "../views/Financeiro/create_ganhos.vue";
 import EditManut from "../views/Manutenções/edit.vue";
 import EditTreinamento from "../views/Treinamentos/edit.vue";
 import EditFornecedor from "../views/Fornecedores/edit.vue";
+import EditCusto from "../views/Financeiro/editcusto.vue";
+import EditGanho from "../views/Financeiro/editganho.vue";
 
 const routes = [
   {
@@ -46,6 +48,16 @@ const routes = [
     path: '/edit_fornecedor/:id',
     name: 'Editar Fornecedor',
     component: EditFornecedor,
+  },
+  {
+    path: '/edit_financeirocusto/:id',
+    name: 'Editar Custo',
+    component: EditCusto,
+  },
+  {
+    path: '/edit_financeiroganho/:id',
+    name: 'Editar Ganho',
+    component: EditGanho,
   },
   {
     path: "/create_manutencao_geral",

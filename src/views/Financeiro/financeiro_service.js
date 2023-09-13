@@ -5,7 +5,7 @@ import {
     getAllFinanceiroCGR,
     getAllFinanceiros,
     getAllGanhos,
-    getAllRenda
+    getAllRenda, getFinanc, updateFinanc
 } from "@/constants/config";
 
 
@@ -28,4 +28,12 @@ export const getAllFinanceiro = () => {
 };
 export const getAllCGR = () => {
     return axios.get(getAllFinanceiroCGR);
+};
+
+export const getInfosFinanceiro = (manutId) => {
+    return axios.get(getFinanc + manutId);
+};
+
+export const editFinanceiro = (data, manutId) => {
+    return axios.put(updateFinanc + manutId, data );
 };
