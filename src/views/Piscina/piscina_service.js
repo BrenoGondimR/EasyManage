@@ -1,7 +1,7 @@
 import axios from "axios";
 import {
     criarManutencao,
-    criarTratamento, getHistory, getHistoryManutencao, updateEstadoManut
+    criarTratamento, getHistory, getHistoryManutencao, getPiscina, updateEstadoManut, updateTrat
 } from "@/constants/config";
 
 export const getAllHistory = () => {
@@ -20,5 +20,13 @@ export const createManutencao = (data) => {
 };
 export const updateEstado = (data, manutId) => {
     return axios.put(updateEstadoManut + manutId, data );
+};
+
+export const getPiscinaId = (manutId) => {
+    return axios.get(getPiscina + manutId );
+};
+
+export const editTratamento = (data, manutId) => {
+    return axios.put(updateTrat + manutId, data );
 };
 

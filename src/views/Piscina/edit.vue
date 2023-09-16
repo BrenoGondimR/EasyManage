@@ -21,7 +21,7 @@
               <button id="btn-dark" @click="getPage" class="btn w-100 px-3 mb-2 bg-gradient-success">Cancelar</button>
             </div>
             <div class="col-6">
-              <button id="btn-white" @click="Tratamento"  class="btn w-100 px-3 mb-2 btn-outline-success">Salvar</button>
+              <button id="btn-white" @click="EditTratamento"  class="btn w-100 px-3 mb-2 btn-outline-success">Salvar</button>
             </div>
           </div>
         </div>
@@ -33,15 +33,17 @@
 <script>
 
 
-import {createTratamento} from "@/views/Piscina/piscina_service";
+import { editTratamento, getPiscinaId } from "@/views/Piscina/piscina_service";
+import { formatDate } from "@/utils";
 export default {
-  name: "create_tratamento",
+  name: "edit_piscina",
   components: {
   },
   data() {
     return {
       type: "Tratamento",
-      estado: "Pendente",
+      ID: '',
+      estado: "",
       formsTratamento: [
         {label: "Nome", type: "text", value: "", placeholder: "Nome Do Piscineiro", error: "", errorMessage: "", col: "col-md-6"},
         {label: "Empresa", type: "text", value: "", placeholder: "Nome Da Empresa", error: "", errorMessage: "", col: "col-md-6"},
@@ -57,7 +59,8 @@ export default {
     getPage() {
       this.$router.push('/piscina')
     },
-    Tratamento() {
+    EditTratamento() {
+      let id = this.ID
       // Split the date into day, month, and year
       const parts = this.formsTratamento[2].value.split('/');
       const dia = parts[0];
@@ -65,27 +68,28 @@ export default {
       const ano = parts[2];
       // Format the date as "AAAA-MM-DD" to ensure it's correctly parsed by Go's time package
       const dataFormatada = `${ano}-${mes}-${dia}T00:00:00Z`;
+      debugger
       const tratamento = {
         'type': this.type,
         'estado': this.estado,
         'nome_piscineiro': this.formsTratamento[0].value,
         'nome_empresa': this.formsTratamento[1].value,
         'data': dataFormatada,
-        'cloro': parseFloat(this.formsTratamento[3].value.replace(/,/g, '.')),
-        'pha': parseFloat(this.formsTratamento[4].value.replace(/,/g, '.')),
-        'alcalinidade': parseFloat(this.formsTratamento[5].value.replace(/,/g, '.')),
-        'acidez': parseFloat(this.formsTratamento[6].value.replace(/,/g, '.')),
+        'cloro': parseFloat(this.formsTratamento[3].value),
+        'pha': parseFloat(this.formsTratamento[4].value),
+        'alcalinidade': parseFloat(this.formsTratamento[5]),
+        'acidez': parseFloat(this.formsTratamento[6].value),
       };
-      createTratamento(tratamento)
-          .then((response) => {
-            // Tratar a resposta do backend aqui
-            console.log(response.data);
-            this.$router.push("/piscina"); // Redirecionar após a criação do funcionário
-          })
-          .catch((error) => {
-            // Tratar erros aqui
-            console.error(error);
-          });
+      editTratamento(tratamento, id)
+        .then((response) => {
+          // Tratar a resposta do backend aqui
+          console.log(response.data);
+          this.$router.push("/piscina"); // Redirecionar após a criação do funcionário
+        })
+        .catch((error) => {
+          // Tratar erros aqui
+          console.error(error);
+        });
     },
     formatarDataInput() {
       // Obtém o valor atual do campo
@@ -105,6 +109,27 @@ export default {
       // Atualiza o valor do campo
       this.formsTratamento[2].value = value;
     },
+    getAllInfosPiscina() {
+      getPiscinaId(this.ID)
+        .then((response) => {
+          debugger
+          // Supondo que você deseja preencher apenas com o primeiro registro obtido
+          const tratamento = response.data.data;
+          this.formsTratamento[0].value = tratamento.nome_piscineiro;
+          this.formsTratamento[2].value = formatDate(tratamento.data);
+          this.formsTratamento[1].value = tratamento.nome_empresa;
+          this.formsTratamento[3].value = tratamento.cloro;
+          this.formsTratamento[4].value = tratamento.pha;
+          this.formsTratamento[5].value = tratamento.alcalinidade;
+          this.formsTratamento[6].value = tratamento.acidez;
+          this.type = tratamento.type;
+          this.estado = tratamento.estado;
+        })
+        .catch((error) => {
+          // Tratar erros aqui, caso ocorram
+          console.error(error);
+        });
+    },
     onInputNumberOnly(form) {
       if (form.label === 'Nome' || form.label === 'Empresa') {
         // Permite a entrada de texto para campos do tipo "text"
@@ -113,6 +138,10 @@ export default {
       // Remove caracteres não numéricos do valor do campo
       form.value = form.value.replace(/[^\d.,]/g, '');
     },
+  },
+  created() {
+    this.ID = this.$route.params.id;
+    this.getAllInfosPiscina()
   }
 };
 </script>

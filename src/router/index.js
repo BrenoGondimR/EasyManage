@@ -17,6 +17,7 @@ import EditTreinamento from "../views/Treinamentos/edit.vue";
 import EditFornecedor from "../views/Fornecedores/edit.vue";
 import EditCusto from "../views/Financeiro/editcusto.vue";
 import EditGanho from "../views/Financeiro/editganho.vue";
+import EditTrat from "../views/Piscina/edit";
 
 const routes = [
   {
@@ -48,6 +49,11 @@ const routes = [
     path: '/edit_fornecedor/:id',
     name: 'Editar Fornecedor',
     component: EditFornecedor,
+  },
+  {
+    path: '/edit_piscina/:id',
+    name: 'Editar Tratamento',
+    component: EditTrat,
   },
   {
     path: '/edit_financeirocusto/:id',

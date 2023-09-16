@@ -23,6 +23,7 @@
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pha</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acidez</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Data</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
           </tr>
           </thead>
           <tbody>
@@ -49,6 +50,9 @@
             </td>
             <td class="align-middle text-center">
               <span class="text-secondary text-xs font-weight-bold">{{ history.history }}</span>
+            </td>
+            <td class="align-middle text-center">
+              <i @click="editPiscina(history.ID)" class="ni ni-settings-gear-65" style="cursor: pointer !important;"></i>
             </td>
           </tr>
           </tbody>
@@ -93,6 +97,9 @@ export default {
             // Tratar erros aqui
             console.error(error);
           });
+    },
+    editPiscina(id) {
+      this.$router.push(`/edit_piscina/${id}`);
     },
     getPriorityClass(prioridade) {
       switch (prioridade) {
@@ -145,6 +152,7 @@ export default {
               response.data.data.forEach((tratamento) => {
                 // Adicione cada funcionário à lista
                 this.tableHistory.push({
+                  ID: tratamento._id,
                   nome_piscineiro: tratamento.nome_piscineiro,
                   nome_empresa: tratamento.nome_empresa,
                   cloro: tratamento.cloro,
@@ -152,7 +160,7 @@ export default {
                   estado: tratamento.estado,
                   pha: tratamento.pha,
                   acidez: tratamento.acidez,
-                  history: formatDate(tratamento.createdAt)
+                  history: formatDate(tratamento.data)
                 });
               });
             }

@@ -18,12 +18,17 @@ export const createFornecedorUrl = apisUrl + 'fornecedores/create';
 export const getHistoryFornecedores = apisUrl + 'fornecedores';
 export const getForne = apisUrl + 'fornecedores/edit/get/';
 export const updateForne = apisUrl + 'fornecedores/edit/update/';
+
 // Piscina
 export const criarTratamento = apisUrl + 'piscina/create';
 export const criarManutencao = apisUrl + 'piscina/manutencao/create';
 export const updateEstadoManut = apisUrl + 'piscina/estado/update/';
 export const getHistory = apisUrl + 'piscina';
 export const getHistoryManutencao = apisUrl + 'piscina/manutencao';
+export const getPiscina = apisUrl + 'piscina/edit/get/';
+export const updateTrat = apisUrl + 'piscina/edit/update/';
+
+
 
 // Treinamentos
 export const criarTreinamento = apisUrl + 'treinamentos/create';
