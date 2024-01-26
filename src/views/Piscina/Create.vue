@@ -75,6 +75,7 @@ export default {
         'pha': parseFloat(this.formsTratamento[4].value.replace(/,/g, '.')),
         'alcalinidade': parseFloat(this.formsTratamento[5].value.replace(/,/g, '.')),
         'acidez': parseFloat(this.formsTratamento[6].value.replace(/,/g, '.')),
+        'estabelecimento_id': localStorage.getItem('estabId'),
       };
       createTratamento(tratamento)
           .then((response) => {

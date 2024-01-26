@@ -4,6 +4,7 @@ export default createStore({
   state: {
     hideConfigButton: false,
     isPinned: true,
+    isAuthenticated: false,
     showConfig: false,
     sidebarType: "bg-white",
     isRTL: false,
@@ -21,6 +22,9 @@ export default createStore({
   mutations: {
     toggleConfigurator(state) {
       state.showConfig = !state.showConfig;
+    },
+    setIsAuthenticated(state, status) {
+      state.isAuthenticated = status;
     },
     navbarMinimize(state) {
       const sidenav_show = document.querySelector(".g-sidenav-show");
@@ -51,5 +55,9 @@ export default createStore({
       commit("sidebarType", payload);
     }
   },
-  getters: {}
+  getters: {
+    isAuthenticated(state) {
+      return state.isAuthenticated;
+    },
+  }
 });

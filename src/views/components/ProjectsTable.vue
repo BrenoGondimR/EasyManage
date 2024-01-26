@@ -152,7 +152,6 @@
 <td>
 <div class="d-flex px-2">
 <div>
-<img src="https://demos.creative-tim.com/argon-dashboard/assets/img/small-logos/logo-webdev.svg" class="avatar avatar-sm rounded-circle me-2" alt="webdev">
 </div>
 <div class="my-auto">
 <h6 class="mb-0 text-sm">Webdev</h6>

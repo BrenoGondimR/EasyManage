@@ -84,6 +84,7 @@ export default {
         'servico': this.forms[2].value,
         'descricao': this.forms[4].value,
         'status': this.status,
+        'estabelecimento_id': localStorage.getItem('estabId'),
       };
       createManutencao(manutencao)
           .then((response) => {

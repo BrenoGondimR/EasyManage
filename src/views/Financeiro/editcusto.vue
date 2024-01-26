@@ -54,7 +54,7 @@ export default {
       this.$router.push('/dashboard-default')
     },
     getAllInfosFinanceiro() {
-      getInfosFinanceiro(this.ID)
+      getInfosFinanceiro(this.ID, localStorage.getItem('estabId'))
           .then((response) => {
             debugger
             // Supondo que você deseja preencher apenas com o primeiro registro obtido

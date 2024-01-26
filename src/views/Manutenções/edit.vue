@@ -88,6 +88,7 @@ export default {
         'servico': this.forms[2].value,
         'descricao': this.forms[4].value,
         'status': this.status,
+        'estabelecimento_id': localStorage.getItem('estabId'),
       };
       editManutencao(manutencao, id)
           .then((response) => {
@@ -100,8 +101,7 @@ export default {
           });
     },
     getAllInfosManutencao() {
-      console.log(this.ID)
-      getInfosManut(this.ID)
+      getInfosManut(this.ID, localStorage.getItem('estabId'))
           .then((response) => {
             debugger
             // Supondo que você deseja preencher apenas com o primeiro registro obtido

@@ -6,6 +6,12 @@
   position: relative;
 }
 
+.navbar-nav > .dropdown-toggle{
+  margin-bottom: 0px;
+  background: none;
+  box-shadow: none;
+}
+
 .dropdown-toggle {
   white-space: nowrap;
 
@@ -34,7 +40,7 @@
   &[data-bs-popper] {
     top: 100%;
     left: 0;
-    margin-top: $dropdown-spacer;
+    margin-top: 0.5rem;
   }
 }
 

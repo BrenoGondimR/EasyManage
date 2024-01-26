@@ -125,6 +125,7 @@ export default {
         'tipo_transacao': this.forms[2].value,
         'data': dataFormatada,
         'status': this.status,
+        'estabelecimento_id': localStorage.getItem('estabId'),
       };
 
       // Chamar a função para enviar a requisição POST

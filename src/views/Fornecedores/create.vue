@@ -54,6 +54,7 @@ export default {
         'cidade': this.forms[1].value,
         'contato': this.forms[2].value,
         'nota': parseFloat(this.forms[3].value),
+        'estabelecimento_id': localStorage.getItem('estabId'),
       };
 
       // Chamar a função para enviar a requisição POST

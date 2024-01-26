@@ -5,7 +5,7 @@ import {
     getAllFinanceiroCGR,
     getAllFinanceiros,
     getAllGanhos,
-    getAllRenda, getFinanc, updateFinanc
+    getAllRenda, getFinanc, getTopCustos, getTopGanhos, updateFinanc
 } from "@/constants/config";
 
 
@@ -13,25 +13,33 @@ export const createFinanceiro = (bodyCupom) => {
     return axios.post(criarFinanceiro, bodyCupom);
 };
 
-export const getAllCustosFinanceiro = () => {
-    return axios.get(getAllCustos);
-};
-export const getAllGanhosFinanceiro = () => {
-    return axios.get(getAllGanhos);
-};
-export const getAllRendaFinanceiro = () => {
-    return axios.get(getAllRenda);
+export const getAllCustosFinanceiro = (estabId, mes) => {
+    return axios.get(getAllCustos + estabId + '/' + mes);
 };
 
-export const getAllFinanceiro = () => {
-    return axios.get(getAllFinanceiros);
-};
-export const getAllCGR = () => {
-    return axios.get(getAllFinanceiroCGR);
+export const getTopCustosFinanceiro = (estabId, mes) => {
+    return axios.get(getTopCustos + estabId + '/' + mes);
 };
 
-export const getInfosFinanceiro = (manutId) => {
-    return axios.get(getFinanc + manutId);
+export const getTopGanhosFinanceiro = (estabId, mes) => {
+    return axios.get(getTopGanhos + estabId + '/' + mes);
+};
+export const getAllGanhosFinanceiro = (estabId, mes) => {
+    return axios.get(getAllGanhos + estabId + '/' + mes);
+};
+export const getAllRendaFinanceiro = (estabId, mes) => {
+    return axios.get(getAllRenda + estabId + '/' + mes);
+};
+
+export const getAllFinanceiro = (estabId, mes) => {
+    return axios.get(getAllFinanceiros + estabId + '/' + mes);
+};
+export const getAllCGR = (estabId) => {
+    return axios.get(getAllFinanceiroCGR + estabId);
+};
+
+export const getInfosFinanceiro = (manutId, estabId) => {
+    return axios.get(getFinanc + manutId + '/' + estabId);
 };
 
 export const editFinanceiro = (data, manutId) => {

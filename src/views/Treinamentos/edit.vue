@@ -83,8 +83,7 @@ export default {
       this.$router.push('/treinamentos')
     },
     getAllInfosTreinamento() {
-      console.log(this.ID)
-      getTreinamentoId(this.ID)
+      getTreinamentoId(this.ID, localStorage.getItem('estabId'))
           .then((response) => {
             debugger
             // Supondo que você deseja preencher apenas com o primeiro registro obtido
@@ -122,6 +121,7 @@ export default {
         'funcionarios': this.forms[4].value,
         'observacoes': this.forms[6].value,
         'status': this.status,
+        'estabelecimento_id': localStorage.getItem('estabId'),
       };
       editTreinamento(manutencao, id)
           .then((response) => {

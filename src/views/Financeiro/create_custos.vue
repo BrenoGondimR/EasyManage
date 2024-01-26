@@ -18,7 +18,7 @@
                   <button id="btn-dark" @click="getPage" class="btn w-100 px-3 mb-2 bg-gradient-success">Cancelar</button>
                 </div>
                 <div class="col-6">
-                  <button id="btn-white" @click="createFinanceiro"  class="btn w-100 px-3 mb-2 btn-outline-success">Salvar</button>
+                  <button id="btn-white" @click="createFinanceiroFunc"  class="btn w-100 px-3 mb-2 btn-outline-success">Salvar</button>
                 </div>
               </div>
             </div>
@@ -106,7 +106,7 @@ export default {
       // Atualize o valor do campo
       this.forms[index].value = value;
     },
-    createFinanceiro() {
+    createFinanceiroFunc() {
       // Split the date into day, month, and year
       const parts = this.forms[3].value.split('/');
       const dia = parts[0];
@@ -121,6 +121,7 @@ export default {
         'tipo_transacao': this.forms[2].value,
         'data': dataFormatada, // Use the formatted date here
         'status': this.status,
+        'estabelecimento_id': localStorage.getItem('estabId'),
       };
 
       // Call the function to send the POST request

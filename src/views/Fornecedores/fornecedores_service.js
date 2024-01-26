@@ -6,12 +6,12 @@ export const createFornecedor = (bodyCupom) => {
   return axios.post(createFornecedorUrl, bodyCupom);
 };
 
-export const getAllFornecedores = () => {
-  return axios.get(getHistoryFornecedores);
+export const getAllFornecedores = (estabId) => {
+  return axios.get(getHistoryFornecedores + estabId);
 };
 
-export const getInfosFornecedor = (manutId) => {
-  return axios.get(getForne + manutId);
+export const getInfosFornecedor = (manutId, estabId) => {
+  return axios.get(getForne + manutId + '/' + estabId);
 };
 
 export const editFornecedor = (data, manutId) => {

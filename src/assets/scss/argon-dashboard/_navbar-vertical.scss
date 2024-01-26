@@ -295,6 +295,11 @@
   }
 }
 
+.navbar-nav .dropdown-menu{
+  position: absolute !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 .navbar-vertical {
   &.bg-white {
     box-shadow: $card-box-shadow;

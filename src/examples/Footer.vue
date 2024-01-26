@@ -7,7 +7,7 @@
             class="text-sm text-center copyright text-muted"
             :class="this.$store.state.isRTL ? 'text-lg-end' : 'text-lg-start'"
           >
-            PousadaEasyManage
+            Easy Manage
             ©
             {{ new Date().getFullYear() }}
           </div>

@@ -99,6 +99,7 @@ export default {
         'funcionarios': this.forms[4].value,
         'observacoes': this.forms[6].value,
         'status': this.status,
+        'estabelecimento_id': localStorage.getItem('estabId'),
       };
       createTreinamento(manutencao)
           .then((response) => {

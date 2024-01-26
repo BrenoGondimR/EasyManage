@@ -5,8 +5,8 @@ import {
   updateStatusTreinamentos, updateTreinamento
 } from "@/constants/config";
 
-export const getAllHistory = () => {
-  return axios.get(getHistoryTreinamentos);
+export const getAllHistory = (estabId) => {
+  return axios.get(getHistoryTreinamentos + estabId);
 };
 
 export const createTreinamento = (data) => {
@@ -21,6 +21,6 @@ export const editTreinamento = (data, manutId) => {
   return axios.put(updateTreinamento + manutId, data );
 };
 
-export const getTreinamentoId = (manutId) => {
-  return axios.get(getTreinamento + manutId );
+export const getTreinamentoId = (manutId, estabId) => {
+  return axios.get(getTreinamento + manutId + '/' + estabId);
 };

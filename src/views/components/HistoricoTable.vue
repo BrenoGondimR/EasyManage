@@ -87,6 +87,7 @@ export default {
       let estadoFitler = {
         '_id': id,
         'estado': this.dropdownValue,
+        'estabelecimento_id': localStorage.getItem('estabId'),
       };
       updateEstado(estadoFitler, id)
           .then((response) => {
@@ -145,7 +146,7 @@ export default {
       }
     },
     getAllTratamento() {
-      getAllHistory()
+      getAllHistory(localStorage.getItem('estabId'))
           .then((response) => {
             if (response.data.data) {
               this.tableHistory = [];
@@ -171,7 +172,7 @@ export default {
           });
     },
     getAllManutencao() {
-      getAllHistoryManut()
+      getAllHistoryManut(localStorage.getItem('estabId'))
           .then((response) => {
             if (response.data.data) {
               this.tableHistoryManutencao = [];
@@ -206,9 +207,6 @@ export default {
   created() {
     this.getAllTratamento();
     this.getAllManutencao();
-    setTimeout(()=>{
-      debugger
-    },5000)
   },
 };
 </script>

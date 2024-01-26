@@ -50,8 +50,7 @@ export default {
       this.$router.push('/fornecedores')
     },
     getAllInfosFornecedor() {
-      console.log(this.ID)
-      getInfosFornecedor(this.ID)
+      getInfosFornecedor(this.ID, localStorage.getItem('estabId'))
           .then((response) => {
             debugger
             // Supondo que você deseja preencher apenas com o primeiro registro obtido

@@ -85,6 +85,7 @@ export default {
       let estadoFitler = {
         '_id': id,
         'status': this.dropdownValue,
+        'estabelecimento_id': localStorage.getItem('estabId'),
       };
       updateStatus(estadoFitler, id)
           .then((response) => {
@@ -117,7 +118,7 @@ export default {
       }
     },
     getAllManutencoes() {
-      getAllHistory()
+      getAllHistory(localStorage.getItem('estabId'))
           .then((response) => {
             debugger
             if (response.data.data) {

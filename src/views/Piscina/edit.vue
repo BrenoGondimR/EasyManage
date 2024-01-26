@@ -79,6 +79,7 @@ export default {
         'pha': parseFloat(this.formsTratamento[4].value),
         'alcalinidade': parseFloat(this.formsTratamento[5]),
         'acidez': parseFloat(this.formsTratamento[6].value),
+        'estabelecimento_id': localStorage.getItem('estabId'),
       };
       editTratamento(tratamento, id)
         .then((response) => {
@@ -110,7 +111,7 @@ export default {
       this.formsTratamento[2].value = value;
     },
     getAllInfosPiscina() {
-      getPiscinaId(this.ID)
+      getPiscinaId(this.ID, localStorage.getItem('estabId'))
         .then((response) => {
           debugger
           // Supondo que você deseja preencher apenas com o primeiro registro obtido

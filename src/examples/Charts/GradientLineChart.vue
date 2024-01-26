@@ -30,11 +30,10 @@ export default {
     },
     detail1: {
       type: String,
-      default: "4% more",
     },
     detail2: {
-      type: String,
-      default: "in 2021",
+      type: Number,
+      default: 2023,
     },
   },
 
@@ -48,7 +47,7 @@ export default {
 
   methods :{
     getAllFinanceiroCGR() {
-      getAllCGR()
+      getAllCGR(localStorage.getItem('estabId'))
           .then((result) => {
             debugger
             this.ganhos = result.data.ganhos;

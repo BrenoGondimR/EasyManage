@@ -58,7 +58,7 @@ export default {
       this.$router.push('/dashboard-default')
     },
     getAllInfosFinanceiro() {
-      getInfosFinanceiro(this.ID)
+      getInfosFinanceiro(this.ID, localStorage.getItem('estabId'))
           .then((response) => {
             debugger
             // Supondo que você deseja preencher apenas com o primeiro registro obtido
@@ -144,6 +144,7 @@ export default {
         'tipo_transacao': this.forms[2].value,
         'data': dataFormatada, // Use the formatted date here
         'status': this.status,
+        'estabelecimento_id': localStorage.getItem('estabId'),
       };
 
       // Call the function to send the POST request

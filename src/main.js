@@ -4,6 +4,7 @@ import App from "./App.vue";
 import store from "./store";
 import router from "./router";
 import "./assets/css/nucleo-icons.css";
+import 'primeicons/primeicons.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 import "./assets/css/nucleo-svg.css";

@@ -73,7 +73,7 @@ export default {
       this.$router.push(`/edit_fornecedor/${id}`);
     },
     getAllFornecedores() {
-      getAllFornecedores()
+      getAllFornecedores(localStorage.getItem('estabId'))
         .then((response) => {
           if (response.data.data) {
             this.tableHistory = [];

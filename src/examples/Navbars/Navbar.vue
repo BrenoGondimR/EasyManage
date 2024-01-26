@@ -22,22 +22,14 @@
         >
         </div>
         <ul class="navbar-nav justify-content-end">
-          <li class="nav-item d-flex align-items-center">
-            <router-link
-              :to="{ name: 'Signin' }"
-              class="px-0 nav-link font-weight-bold text-white"
-              target="_blank"
-            >
-              <i
-                class="fa fa-user"
-                :class="this.$store.state.isRTL ? 'ms-sm-2' : 'me-sm-2'"
-              ></i>
-              <span v-if="this.$store.state.isRTL" class="d-sm-inline d-none"
-                >يسجل دخول</span
-              >
-              <span v-else class="d-sm-inline d-none">Sign In</span>
-            </router-link>
-          </li>
+          <b-dropdown text="User" class="my-dropdown" v-model="dropdownVisible" :right="true">
+            <template v-slot:button-content="{ toggle }" style="background: none !important;">
+              <li class="pi pi-user" @click="toggle"></li>
+              <span> {{' ' + apelido}}</span>
+            </template>
+            <b-dropdown-item @click="goMeusDados">Meus dados</b-dropdown-item>
+            <b-dropdown-item @click="loggout">Sair</b-dropdown-item>
+          </b-dropdown>
           <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
             <a
               href="#"
@@ -193,12 +185,15 @@ export default {
   name: "navbar",
   data() {
     return {
-      showMenu: false
+      showMenu: false,
+      apelido: 'User',
+      dropdownVisible: false
     };
   },
   props: ["minNav", "textWhite"],
   created() {
     this.minNav;
+    localStorage.getItem('apelido') ? this.apelido = localStorage.getItem('apelido') : this.apelido = 'User'
   },
   methods: {
     ...mapMutations(["navbarMinimize", "toggleConfigurator"]),
@@ -207,6 +202,19 @@ export default {
     toggleSidebar() {
       this.toggleSidebarColor("bg-white");
       this.navbarMinimize();
+    },
+    loggout() {
+      // Remover 'estabId' do localStorage
+      localStorage.removeItem('estabId');
+      localStorage.setItem('isAuthenticated', 'false');
+      this.$store.commit('setIsAuthenticated', false);
+      this.$router.push('/signin')
+    },
+    goMeusDados() {
+      this.$router.push('/meus_dados')
+    },
+    toggleDropdown() {
+      this.dropdownVisible = !this.dropdownVisible;
     }
   },
   components: {
@@ -219,3 +227,15 @@ export default {
   }
 };
 </script>
+<style scoped>
+:deep(.dropdown-toggle) {
+  background: none!important;
+  box-shadow: unset!important;
+  margin: 0px !important;
+}
+
+:deep(.btn){
+  margin: 0px !important;
+  padding: 0px !important;
+}
+</style>

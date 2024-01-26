@@ -130,19 +130,6 @@
   }
 }
 
-@include media-breakpoint-up(lg) {
-  :not(.main-content) .navbar {
-    .dropdown {
-      .dropdown-menu {
-        top: 2.25rem !important;
-
-        .dropdown .dropdown-menu {
-          top: 0 !important;
-        }
-      }
-    }
-  }
-}
 
 @include media-breakpoint-down(lg) {
   .navbar {
@@ -192,23 +179,6 @@
 
     .navbar-nav {
       width: 100%;
-
-      .nav-item {
-        &.dropdown {
-          position: static;
-
-          .dropdown-menu {
-            left: 0;
-            right: 0;
-
-            &.show {
-              &:before {
-                content: none;
-              }
-            }
-          }
-        }
-      }
     }
   }
 }

@@ -105,6 +105,7 @@ export default {
       let estadoFitler = {
         '_id': id,
         'status': this.dropdownValue,
+        'estabelecimento_id': localStorage.getItem('estabId'),
       };
       updateStatusTreinamento(estadoFitler, id)
           .then((response) => {
@@ -137,7 +138,7 @@ export default {
       }
     },
     getAllTrepinamentos() {
-      getAllHistory()
+      getAllHistory(localStorage.getItem('estabId'))
           .then((response) => {
             debugger
             if (response.data.data) {

@@ -3,8 +3,8 @@ import {
     createManutencoesUrl, findManutencoesUrl, getManut, updateManut, updateStatusManut,
 } from "@/constants/config";
 
-export const getAllHistory = () => {
-    return axios.get(findManutencoesUrl);
+export const getAllHistory = (estabId) => {
+    return axios.get(findManutencoesUrl + estabId);
 };
 
 export const createManutencao = (data) => {
@@ -19,7 +19,7 @@ export const editManutencao = (data, manutId) => {
     return axios.put(updateManut + manutId, data );
 };
 
-export const getInfosManut = (manutId) => {
-    return axios.get(getManut + manutId);
+export const getInfosManut = (manutId, estabId) => {
+    return axios.get(getManut + manutId + '/' + estabId);
 };
 

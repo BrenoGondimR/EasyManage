@@ -65,6 +65,10 @@ export default {
       };
     }
   },
+  created() {
+    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+    this.$store.commit('setIsAuthenticated', isAuthenticated);
+  },
   beforeMount() {
     this.$store.state.isTransparent = "bg-transparent";
   }

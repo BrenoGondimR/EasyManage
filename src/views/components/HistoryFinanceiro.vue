@@ -1,8 +1,19 @@
 <template>
   <div class="card">
     <div class="row" style="display: flex; justify-content: space-between">
-      <b-col sm="7" class="mb-2">
+      <b-col sm="9" class="mb-2">
         <span class="h3 font-weight-semibold">Informações</span>
+      </b-col>
+      <b-col sm="3" class="mb-2" style="display: flex;">
+        <DatePicker
+            placeholder="Selecione o Mes"
+            :minimum-view="'month'"
+            :maximum-view="'month'"
+            v-model="dateInput"
+            language="pt"
+            @update:modelValue="getAllFinanceiro"
+        >
+        </DatePicker>
       </b-col>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
@@ -54,12 +65,18 @@
 import {updateStatusTreinamento} from "@/views/Treinamentos/treinamentos_service";
 import {formatDate} from "@/utils";
 import {getAllFinanceiro} from "@/views/Financeiro/financeiro_service";
+import DatePicker from 'vuejs3-datepicker';
 export default {
   name: "HistoryPisc",
+  components: {
+    DatePicker
+  },
   data(){
     return {
       tableHistory: [],
+      dateInput: null, // Inicializado como null
       dropdownValue: '',
+      selectedDate: '',
       expandedRow: null,
       tableHistoryManutencao: [],
       isFull: false,
@@ -70,6 +87,7 @@ export default {
       // Alternar a linha expandida com base no índice clicado
       this.expandedRow = this.expandedRow === index ? null : index;
     },
+
     editFinanceiro(id, status) {
       if(status === 'Custo'){
         this.$router.push(`/edit_financeirocusto/${id}`);
@@ -124,8 +142,27 @@ export default {
           return '';
       }
     },
+    setMesAtual() {
+      const hoje = new Date();
+      const anoAtual = hoje.getFullYear();
+      const mesAtual = hoje.getMonth(); // getMonth() retorna o mês de 0 (Janeiro) a 11 (Dezembro)
+      this.dateInput = new Date(anoAtual, mesAtual, 1); // Define o dateInput para o primeiro dia do mês atual
+    },
     getAllFinanceiro() {
-      getAllFinanceiro()
+      this.tableHistory = []
+      const ano = this.dateInput.getFullYear();
+      const mes = this.dateInput.getMonth() + 1; // getMonth() retorna um índice baseado em 0, então adicione 1
+      const dia = this.dateInput.getDate();
+
+      // Preenche o mês e o dia com zeros à esquerda se necessário
+      const mesFormatado = mes < 10 ? `0${mes}` : mes;
+      const diaFormatado = dia < 10 ? `0${dia}` : dia;
+
+      // Formata a data como "AAAA-MM-DD"
+      const dataFormatada = `${ano}-${mesFormatado}-${diaFormatado}`;
+      console.log(dataFormatada)
+      this.$emit('update:date', dataFormatada);
+      getAllFinanceiro(localStorage.getItem('estabId'), dataFormatada)
           .then((response) => {
             debugger
             if (response.data.data) {
@@ -156,11 +193,25 @@ export default {
     },
   },
   created() {
+    this.setMesAtual();
     this.getAllFinanceiro();
   },
 };
 </script>
 <style>
+
+.vuejs3-datepicker__value{
+  padding: 5px 15px;
+}
+
+.vuejs3-datepicker__icon{
+  margin-top: -2px;
+}
+
+.vuejs3-datepicker__calendar{
+  width: 280px;
+}
+
 #btn-white{
   width: 100% !important;
 }
