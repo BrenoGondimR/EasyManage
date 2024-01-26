@@ -1,7 +1,7 @@
 let apisUrl;
 
-if (window.location.host.split(":")[0] === "easymanage.com.br") {
-  apisUrl = 'https://easymanage.com.br/';
+if (window.location.host.split(":")[0] === "easymanagepro.com.br") {
+  apisUrl = 'http://15.228.238.152:5001/';
 } else {
   apisUrl = 'http://localhost:5001/';
 }
