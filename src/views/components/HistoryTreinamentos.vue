@@ -46,7 +46,7 @@
             </td>
             <td class="align-middle text-center">
               <b-dropdown v-model="dropdownValue" :class="getStatusClass(history.status)" :text="history.status" class="mt-2" :menu-class="getMenuClass(history.status)">
-                <b-dropdown-item @click="toggleDropdownValue(history.ID)">{{ history.status === 'Andamento' ? this.dropdownValue = 'Concluido' : this.dropdownValue = 'Andamento' }}</b-dropdown-item>
+                <b-dropdown-item @click="toggleDropdownValue(history.ID, history.status)">{{ history.status === 'Andamento' ? 'Concluído' : 'Andamento' }}</b-dropdown-item>
               </b-dropdown>
             </td>
             <td class="align-middle text-center">
@@ -78,7 +78,7 @@
 import {getAllHistory, updateStatusTreinamento} from "@/views/Treinamentos/treinamentos_service";
 import {formatDate} from "@/utils";
 export default {
-  name: "HistoryPisc",
+  name: "HistoryTreinamentos",
   data(){
     return {
       tableHistory: [],
@@ -99,12 +99,25 @@ export default {
     editTreinamento(id) {
       this.$router.push(`/edit_treinamento/${id}`);
     },
-    toggleDropdownValue(id) {
+    toggleDropdownValue(id, status) {
+      // Verifique se o status atual é "Concluído" e retorne sem fazer nada
+      if (status === 'Concluído') {
+        return;
+      }
+
+      // Antes de fazer qualquer alteração, verifique se o valor é diferente do atual
+      if (this.dropdownValue === 'Andamento') {
+        this.dropdownValue = 'Concluído';
+      } else {
+        this.dropdownValue = 'Andamento';
+      }
+
       let estadoFitler = {
         '_id': id,
-        'status': this.dropdownValue,
+        'status': this.dropdownValue, // Use o valor atual de dropdownValue
         'estabelecimento_id': localStorage.getItem('estabId'),
       };
+
       updateStatusTreinamento(estadoFitler, id)
           .then((response) => {
             console.log(response.data);

@@ -56,7 +56,7 @@
 <script>
 import { getAllFornecedores } from "@/views/Fornecedores/fornecedores_service";
 export default {
-  name: "HistoryPisc",
+  name: "HistoryFornecedores",
   data(){
     return {
       tableHistory: [],
@@ -72,7 +72,7 @@ export default {
     editFornecedor(id) {
       this.$router.push(`/edit_fornecedor/${id}`);
     },
-    getAllFornecedores() {
+    getAllFornecedoresFunc() {
       getAllFornecedores(localStorage.getItem('estabId'))
         .then((response) => {
           if (response.data.data) {
@@ -96,7 +96,7 @@ export default {
     },
   },
   created() {
-    this.getAllFornecedores();
+    this.getAllFornecedoresFunc();
   },
 };
 </script>

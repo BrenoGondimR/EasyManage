@@ -67,7 +67,7 @@ import {formatDate} from "@/utils";
 import {getAllFinanceiro} from "@/views/Financeiro/financeiro_service";
 import DatePicker from 'vuejs3-datepicker';
 export default {
-  name: "HistoryPisc",
+  name: "HistoryFinanceiro",
   components: {
     DatePicker
   },

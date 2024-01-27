@@ -66,7 +66,7 @@
 import {formatDate} from "@/utils";
 import {getAllHistory, getAllHistoryManut, updateEstado} from "@/views/Piscina/piscina_service";
 export default {
-  name: "HistoryPisc",
+  name: "HistoryPiscina",
   data(){
     return {
       tableHistory: [],
@@ -83,15 +83,17 @@ export default {
       this.$router.push('/create_manutencao')
     },
     toggleDropdownValue(id) {
+      let novoValor = this.dropdownValue === 'Andamento' ? 'Concluido' : 'Andamento';
       let estadoFitler = {
         '_id': id,
-        'estado': this.dropdownValue,
+        'estado': novoValor,
         'estabelecimento_id': localStorage.getItem('estabId'),
       };
       updateEstado(estadoFitler, id)
           .then((response) => {
             console.log(response.data);
             this.getAllManutencao();
+            this.dropdownValue = novoValor; // Defina o novo valor após a atualização bem-sucedida
           })
           .catch((error) => {
             // Tratar erros aqui
