@@ -1,7 +1,7 @@
 let apisUrl;
 
 if (window.location.host === "easymanagepro.com.br") {
-  apisUrl = 'https://apiseasymanage.online:5001/'; // Usando 'https' após configurar SSL
+  apisUrl = 'https://apiseasymanage.online'; // Usando 'https' após configurar SSL
 } else {
   apisUrl = 'http://localhost:5001/'; // 'http' está correto apenas para desenvolvimento local
 }
