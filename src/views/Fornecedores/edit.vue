@@ -52,7 +52,6 @@ export default {
     getAllInfosFornecedor() {
       getInfosFornecedor(this.ID, localStorage.getItem('estabId'))
           .then((response) => {
-            debugger
             // Supondo que você deseja preencher apenas com o primeiro registro obtido
 
             this.forms[0].value = response.data.data.fornecedor;

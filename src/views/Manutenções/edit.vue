@@ -103,7 +103,6 @@ export default {
     getAllInfosManutencao() {
       getInfosManut(this.ID, localStorage.getItem('estabId'))
           .then((response) => {
-            debugger
             // Supondo que você deseja preencher apenas com o primeiro registro obtido
 
             this.forms[0].value = response.data.data.local;
@@ -144,7 +143,6 @@ export default {
       }
     },
     formatarDataInput() {
-      debugger
       // Obtém o valor atual do campo
       let value = this.forms[1].value;
 

@@ -56,7 +56,6 @@ export default {
     getAllInfosFinanceiro() {
       getInfosFinanceiro(this.ID, localStorage.getItem('estabId'))
           .then((response) => {
-            debugger
             // Supondo que você deseja preencher apenas com o primeiro registro obtido
             this.forms[0].value = response.data.data.origem;
             this.forms[3].value = formatDate(response.data.data.data);

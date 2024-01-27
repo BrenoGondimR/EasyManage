@@ -49,7 +49,6 @@ export default {
     getAllFinanceiroCGR() {
       getAllCGR(localStorage.getItem('estabId'))
           .then((result) => {
-            debugger
             this.ganhos = result.data.ganhos;
             this.custos = result.data.custos;
             this.renda = result.data.renda;

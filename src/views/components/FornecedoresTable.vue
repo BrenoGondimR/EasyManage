@@ -97,9 +97,6 @@ export default {
   },
   created() {
     this.getAllFornecedores();
-    setTimeout(()=>{
-      debugger
-    },5000)
   },
 };
 </script>

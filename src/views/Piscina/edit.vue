@@ -68,7 +68,6 @@ export default {
       const ano = parts[2];
       // Format the date as "AAAA-MM-DD" to ensure it's correctly parsed by Go's time package
       const dataFormatada = `${ano}-${mes}-${dia}T00:00:00Z`;
-      debugger
       const tratamento = {
         'type': this.type,
         'estado': this.estado,
@@ -113,7 +112,6 @@ export default {
     getAllInfosPiscina() {
       getPiscinaId(this.ID, localStorage.getItem('estabId'))
         .then((response) => {
-          debugger
           // Supondo que você deseja preencher apenas com o primeiro registro obtido
           const tratamento = response.data.data;
           this.formsTratamento[0].value = tratamento.nome_piscineiro;

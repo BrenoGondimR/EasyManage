@@ -80,8 +80,6 @@ export default {
       this.$router.push(`/edit_manutencao/${id}`);
     },
     toggleDropdownValue(id) {
-      debugger
-      console.log(this.dropdownValue);
       let estadoFitler = {
         '_id': id,
         'status': this.dropdownValue,
@@ -120,7 +118,6 @@ export default {
     getAllManutencoes() {
       getAllHistory(localStorage.getItem('estabId'))
           .then((response) => {
-            debugger
             if (response.data.data) {
               this.tableHistory = [];
               response.data.data.forEach((manutencao) => {

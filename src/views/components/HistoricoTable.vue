@@ -83,7 +83,6 @@ export default {
       this.$router.push('/create_manutencao')
     },
     toggleDropdownValue(id) {
-      console.log(this.dropdownValue);
       let estadoFitler = {
         '_id': id,
         'estado': this.dropdownValue,

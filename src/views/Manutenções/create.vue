@@ -122,7 +122,6 @@ export default {
       }
     },
     formatarDataInput() {
-      debugger
       // Obtém o valor atual do campo
       let value = this.forms[1].value;
 

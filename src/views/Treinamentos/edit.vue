@@ -85,7 +85,6 @@ export default {
     getAllInfosTreinamento() {
       getTreinamentoId(this.ID, localStorage.getItem('estabId'))
           .then((response) => {
-            debugger
             // Supondo que você deseja preencher apenas com o primeiro registro obtido
             const treinamento = response.data.data;
             this.forms[0].value = treinamento.treinamento;

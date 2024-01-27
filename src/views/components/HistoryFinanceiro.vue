@@ -96,8 +96,6 @@ export default {
       }
     },
     toggleDropdownValue(id) {
-      debugger
-      console.log(this.dropdownValue);
       let estadoFitler = {
         '_id': id,
         'status': this.dropdownValue,
@@ -160,11 +158,9 @@ export default {
 
       // Formata a data como "AAAA-MM-DD"
       const dataFormatada = `${ano}-${mesFormatado}-${diaFormatado}`;
-      console.log(dataFormatada)
       this.$emit('update:date', dataFormatada);
       getAllFinanceiro(localStorage.getItem('estabId'), dataFormatada)
           .then((response) => {
-            debugger
             if (response.data.data) {
               this.tableHistory = [];
               response.data.data.forEach((financeiro) => {
