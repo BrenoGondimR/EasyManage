@@ -46,6 +46,7 @@ export const getAllFinanceiros = apisUrl + 'financeiro/todos/';
 export const getAllFinanceiroCGR = apisUrl + 'financeiro/cgr/';
 export const getFinanc = apisUrl + 'financeiro/edit/get/';
 export const updateFinanc = apisUrl + 'financeiro/edit/update/';
+export const deleteFinanc = apisUrl + 'financeiro/edit/delete/';
 export const getAllGanhos = apisUrl + 'financeiro/ganhos/';
 export const getAllRenda = apisUrl + 'financeiro/renda/';
 

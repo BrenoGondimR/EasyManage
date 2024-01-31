@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-    criarFinanceiro,
+    criarFinanceiro, deleteFinanc,
     getAllCustos,
     getAllFinanceiroCGR,
     getAllFinanceiros,
@@ -44,4 +44,8 @@ export const getInfosFinanceiro = (manutId, estabId) => {
 
 export const editFinanceiro = (data, manutId) => {
     return axios.put(updateFinanc + manutId, data );
+};
+
+export const deleteFinanceiro = (manutId, estabId) => {
+    return axios.delete(deleteFinanc + manutId + '/' + estabId );
 };

@@ -53,6 +53,9 @@
             <td class="align-middle text-center">
               <i @click="editFinanceiro(history.ID, history.status)" class="ni ni-settings-gear-65" style="cursor: pointer !important;"></i>
             </td>
+            <td class="align-middle text-center">
+              <i @click="delFinanceiro(history.ID)" class="pi pi-trash" style="cursor: pointer"></i>
+            </td>
           </tr>
           </tbody>
         </table>
@@ -64,8 +67,9 @@
 <script>
 import {updateStatusTreinamento} from "@/views/Treinamentos/treinamentos_service";
 import {formatDate} from "@/utils";
-import {getAllFinanceiro} from "@/views/Financeiro/financeiro_service";
+import {deleteFinanceiro, getAllFinanceiro} from "@/views/Financeiro/financeiro_service";
 import DatePicker from 'vuejs3-datepicker';
+
 export default {
   name: "HistoryFinanceiro",
   components: {
@@ -107,6 +111,20 @@ export default {
           })
           .catch((error) => {
             // Tratar erros aqui
+            console.error(error);
+          });
+    },
+    delFinanceiro(idFina) {
+      // Call the function to send the POST request
+      deleteFinanceiro(idFina, localStorage.getItem('estabId'))
+          .then((response) => {
+            // Handle the backend response here
+            console.log(response.data);
+            this.getAllFinanceiro()
+            this.$router.push("/dashboard-default"); // Redirect after creating the record
+          })
+          .catch((error) => {
+            // Handle errors here
             console.error(error);
           });
     },
