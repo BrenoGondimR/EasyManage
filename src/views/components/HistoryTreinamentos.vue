@@ -22,8 +22,8 @@
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Data</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tipo</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Detalhes</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 30px;">Detalhes</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 20px;"></th>
           </tr>
           </thead>
           <tbody>
@@ -119,8 +119,7 @@ export default {
       };
 
       updateStatusTreinamento(estadoFitler, id)
-          .then((response) => {
-            console.log(response.data);
+          .then(() => {
             this.getAllTrepinamentos();
           })
           .catch((error) => {

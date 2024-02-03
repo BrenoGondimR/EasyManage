@@ -42,6 +42,7 @@ export default {
         {label: "Cidade", type: "text", value: "", placeholder: "Cidade", error: "", errorMessage: "", col: "col-md-6"},
         {label: "Contato", type: "text", value: "", placeholder: "Telefone", error: "", errorMessage: "", col: "col-md-6"},
         {label: "Nota", type: "text", value: "", placeholder: "Avaliação", error: "", errorMessage: "", col: "col-md-6"},
+        {label: "Observação", type: "text", value: "", placeholder: "Observação", error: "", errorMessage: "", col: "col-md-12"},
       ]
     };
   },
@@ -52,12 +53,11 @@ export default {
     getAllInfosFornecedor() {
       getInfosFornecedor(this.ID, localStorage.getItem('estabId'))
           .then((response) => {
-            // Supondo que você deseja preencher apenas com o primeiro registro obtido
-
             this.forms[0].value = response.data.data.fornecedor;
             this.forms[1].value = response.data.data.cidade
             this.forms[2].value = response.data.data.contato;
             this.forms[3].value = response.data.data.nota;
+            this.forms[4].value = response.data.data.observacao;
           })
           .catch((error) => {
             // Tratar erros aqui, caso ocorram
@@ -70,14 +70,15 @@ export default {
         'fornecedor': this.forms[0].value,
         'cidade': this.forms[1].value,
         'contato': this.forms[2].value,
+        'observacao': this.forms[4].value,
+        'estabelecimento_id': localStorage.getItem('estabId'),
         'nota': parseFloat(this.forms[3].value),
       };
 
       // Chamar a função para enviar a requisição POST
       editFornecedor(fornecedor, id)
-          .then((response) => {
+          .then(() => {
             // Tratar a resposta do backend aqui
-            console.log(response.data);
             this.$router.push("/fornecedores"); // Redirecionar após a criação do funcionário
           })
           .catch((error) => {

@@ -91,8 +91,7 @@ export default {
         'estabelecimento_id': localStorage.getItem('estabId'),
       };
       editManutencao(manutencao, id)
-          .then((response) => {
-            console.log(response.data);
+          .then(() => {
             this.$router.push("/manutencoes");
           })
           .catch((error) => {

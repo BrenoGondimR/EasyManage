@@ -99,8 +99,7 @@ export default {
       };
 
       updateStatus(estadoFitler, id)
-          .then((response) => {
-            console.log(response.data);
+          .then(() => {
             this.getAllManutencoes();
           })
           .catch((error) => {

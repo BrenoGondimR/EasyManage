@@ -143,9 +143,8 @@ export default {
 
       // Call the function to send the POST request
       editFinanceiro(custos, id)
-          .then((response) => {
+          .then(() => {
             // Handle the backend response here
-            console.log(response.data);
             this.$router.push("/dashboard-default"); // Redirect after creating the record
           })
           .catch((error) => {

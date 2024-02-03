@@ -78,9 +78,8 @@ export default {
         'estabelecimento_id': localStorage.getItem('estabId'),
       };
       createTratamento(tratamento)
-          .then((response) => {
+          .then(() => {
             // Tratar a resposta do backend aqui
-            console.log(response.data);
             this.$router.push("/piscina"); // Redirecionar após a criação do funcionário
           })
           .catch((error) => {

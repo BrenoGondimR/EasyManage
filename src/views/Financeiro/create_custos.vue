@@ -126,9 +126,8 @@ export default {
 
       // Call the function to send the POST request
       createFinanceiro(custos)
-          .then((response) => {
+          .then(() => {
             // Handle the backend response here
-            console.log(response.data);
             this.$router.push("/dashboard-default"); // Redirect after creating the record
           })
           .catch((error) => {

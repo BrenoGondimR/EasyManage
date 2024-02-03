@@ -102,8 +102,7 @@ export default {
         'estabelecimento_id': localStorage.getItem('estabId'),
       };
       createTreinamento(manutencao)
-          .then((response) => {
-            console.log(response.data);
+          .then(() => {
             this.$router.push("/treinamentos");
           })
           .catch((error) => {

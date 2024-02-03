@@ -103,6 +103,11 @@
   font-weight: 600 !important;
 }
 
+.page-item.active .page-link{
+  background-color: #2dce89 !important;
+  border-color: #29b679 !important;
+}
+
 .card-ajustado > button{
   background-color: #E7F6E8;
   padding: 7px;

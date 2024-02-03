@@ -23,7 +23,7 @@
         >
           <template v-slot:icon>
             <i
-              class="ni ni-single-02 text-warning text-sm opacity-10"
+              class="ni ni-settings text-warning text-sm opacity-10"
             ></i>
           </template>
         </sidenav-item>

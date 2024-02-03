@@ -30,7 +30,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr v-for="(history, index) in tableHistory" :key="index">
+          <tr v-for="(history, index) in paginatedHistory" :key="index">
             <td>
               <div class="d-flex px-2 py-1">
                 <div class="d-flex flex-column justify-content-center">
@@ -59,6 +59,15 @@
           </tr>
           </tbody>
         </table>
+        <b-pagination
+            v-if="tableHistory.length > 0"
+            v-model="currentPage"
+            :total-rows="rows"
+            :per-page="perPage"
+            aria-controls="table-financeiro"
+            align="center"
+            class="mt-4">
+        </b-pagination>
       </div>
     </div>
   </div>
@@ -80,10 +89,20 @@ export default {
       tableHistory: [],
       dateInput: null, // Inicializado como null
       dropdownValue: '',
+      currentPage: 1,
+      perPage: 10,
+      rows: 0, // Total de itens em tableHistory
       selectedDate: '',
       expandedRow: null,
       tableHistoryManutencao: [],
       isFull: false,
+    }
+  },
+  computed: {
+    paginatedHistory() {
+      const start = (this.currentPage - 1) * this.perPage;
+      const end = start + this.perPage;
+      return this.tableHistory.slice(start, end);
     }
   },
   methods :{
@@ -105,8 +124,7 @@ export default {
         'status': this.dropdownValue,
       };
       updateStatusTreinamento(estadoFitler, id)
-          .then((response) => {
-            console.log(response.data);
+          .then(() => {
             this.getAllTrepinamentos();
           })
           .catch((error) => {
@@ -117,9 +135,8 @@ export default {
     delFinanceiro(idFina) {
       // Call the function to send the POST request
       deleteFinanceiro(idFina, localStorage.getItem('estabId'))
-          .then((response) => {
+          .then(() => {
             // Handle the backend response here
-            console.log(response.data);
             this.getAllFinanceiro()
             this.$router.push("/dashboard-default"); // Redirect after creating the record
           })
@@ -198,6 +215,7 @@ export default {
                   status: financeiro.status,
                 });
               });
+              this.rows = this.tableHistory.length; // Atualize o total de linhas após receber os dados
             }
           })
           .catch((error) => {

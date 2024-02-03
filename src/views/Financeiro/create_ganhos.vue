@@ -130,9 +130,8 @@ export default {
 
       // Chamar a função para enviar a requisição POST
       createFinanceiro(custos)
-          .then((response) => {
+          .then(() => {
             // Tratar a resposta do backend aqui
-            console.log(response.data);
             this.$router.push("/dashboard-default"); // Redirecionar após a criação do funcionário
           })
           .catch((error) => {

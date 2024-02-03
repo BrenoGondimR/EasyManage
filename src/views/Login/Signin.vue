@@ -101,7 +101,6 @@ export default {
           .then((response) => {
             if (response.data) {
               localStorage.setItem('apelido', response.data.data.apelido);
-              console.log(response.data.data.apelido)
             }
           })
           .catch((error) => {

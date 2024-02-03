@@ -41,6 +41,7 @@ export default {
         {label: "Cidade", type: "text", value: "", placeholder: "Cidade", error: "", errorMessage: "", col: "col-md-6"},
         {label: "Contato", type: "text", value: "", placeholder: "Telefone", error: "", errorMessage: "", col: "col-md-6"},
         {label: "Nota", type: "text", value: "", placeholder: "Avaliação", error: "", errorMessage: "", col: "col-md-6"},
+        {label: "Observação", type: "text", value: "", placeholder: "Observação", error: "", errorMessage: "", col: "col-md-12"},
       ]
     };
   },
@@ -54,14 +55,14 @@ export default {
         'cidade': this.forms[1].value,
         'contato': this.forms[2].value,
         'nota': parseFloat(this.forms[3].value),
+        'observacao': this.forms[4].value,
         'estabelecimento_id': localStorage.getItem('estabId'),
       };
 
       // Chamar a função para enviar a requisição POST
       createFornecedor(fornecedor)
-        .then((response) => {
+        .then(() => {
           // Tratar a resposta do backend aqui
-          console.log(response.data);
           this.$router.push("/fornecedores"); // Redirecionar após a criação do funcionário
         })
         .catch((error) => {

@@ -123,8 +123,7 @@ export default {
         'estabelecimento_id': localStorage.getItem('estabId'),
       };
       editTreinamento(manutencao, id)
-          .then((response) => {
-            console.log(response.data);
+          .then(() => {
             this.$router.push("/treinamentos");
           })
           .catch((error) => {

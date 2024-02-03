@@ -21,7 +21,8 @@
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cidade</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Contato</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nota</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 60px;">Detalhes</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 10px;"></th>
           </tr>
           </thead>
           <tbody>
@@ -43,7 +44,19 @@
               <p class="mb-0 text-sm">{{ history.nota }}</p>
             </td>
             <td class="align-middle text-center">
+              <button @click="toggleRow(index)" class="btn btn-link" style="margin-bottom: 0 !important;">
+                <i :class="['fa', expandedRow === index ? 'fa-chevron-up' : 'fa-chevron-down']"></i>
+              </button>
+            </td>
+            <td class="align-middle text-center">
               <i @click="editFornecedor(history.ID)" class="ni ni-settings-gear-65" style="cursor: pointer !important;"></i>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6">
+              <div v-if="expandedRow !== null" class="expanded-details">
+                <p><strong>Observações:</strong> {{ tableHistory[expandedRow].observacao }}</p>
+              </div>
             </td>
           </tr>
           </tbody>
@@ -61,6 +74,7 @@ export default {
     return {
       tableHistory: [],
       dropdownValue: '',
+      expandedRow: null,
       tableHistoryManutencao: [],
       isFull: false,
     }
@@ -71,6 +85,10 @@ export default {
     },
     editFornecedor(id) {
       this.$router.push(`/edit_fornecedor/${id}`);
+    },
+    toggleRow(index) {
+      // Alternar a linha expandida com base no índice clicado
+      this.expandedRow = this.expandedRow === index ? null : index;
     },
     getAllFornecedoresFunc() {
       getAllFornecedores(localStorage.getItem('estabId'))
@@ -85,6 +103,7 @@ export default {
                 cidade: fornecedor.cidade,
                 contato: fornecedor.contato,
                 nota: fornecedor.nota,
+                observacao: fornecedor.observacao,
               });
             });
           }
