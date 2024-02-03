@@ -250,6 +250,9 @@ export default {
     },
   },
   created() {
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
+    localStorage.setItem('selectedDate', formattedDate);
     this.getAllCustos();
     this.getAllGanhos();
     this.getAllRenda();
