@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-4 card">
+  <div class="mb-4 card" :class="{ 'hover-enabled': hoverEffect }">
     <div class="p-3 card-body">
       <div class="d-flex" :class="directionReverse ? reverseDirection : ''">
         <div>
@@ -40,6 +40,10 @@ export default {
       type: String,
       required: true,
     },
+    hoverEffect: {
+      type: Boolean,
+      default: false, // Por padrão, o hoverEffect está desativado
+    },
     titleColor: {
       type: String,
     },
@@ -68,3 +72,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.hover-enabled:hover {
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1), 0 6px 16px 0 rgba(0, 0, 0, 0.1);
+}
+</style>

@@ -7,6 +7,7 @@
             <card style="cursor: pointer"
               :title="stats.money.title"
               :value="stats.money.value"
+              :hover-effect="true"
               :iconClass="stats.money.iconClass"
               :iconBackground="stats.money.iconBackground"
               @click="getPageGanhos"
@@ -25,6 +26,7 @@
           <div class="col-lg-4 col-md-6 col-12">
             <card style="cursor: pointer"
               :title="stats.clients.title"
+              :hover-effect="true"
               :value="stats.clients.value"
               :iconClass="stats.clients.iconClass"
               :iconBackground="stats.clients.iconBackground"
