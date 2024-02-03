@@ -13,7 +13,7 @@
       </b-col>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
-      <div class="table-responsive p-0">
+      <div class="table-responsive p-0" style="margin-bottom: 0px;">
         <table class="table align-items-center mb-0">
           <thead>
           <tr>
@@ -26,7 +26,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr v-for="(history, index) in tableHistory" :key="index">
+          <tr v-for="(history, index) in paginatedHistory" :key="index">
             <td>
               <div class="d-flex px-2 py-1">
                 <div class="d-flex flex-column justify-content-center">
@@ -48,12 +48,21 @@
                 <b-dropdown-item @click="toggleDropdownValue(history.ID, history.status)">{{ history.status === 'Pendente' ? 'Ajustado' : 'Pendente' }}</b-dropdown-item>
               </b-dropdown>
             </td>
-            <td class="align-middle text-center">
+            <td class="align-middle text-center" style="width: 10px">
               <i @click="editManutencao(history.ID)" class="ni ni-settings-gear-65" style="cursor: pointer !important;"></i>
             </td>
           </tr>
           </tbody>
         </table>
+        <b-pagination
+            v-if="tableHistory.length > 0"
+            v-model="currentPage"
+            :total-rows="rows"
+            :per-page="perPage"
+            aria-controls="table-manutencoes"
+            align="center"
+            class="mt-4">
+        </b-pagination>
       </div>
     </div>
   </div>
@@ -68,8 +77,18 @@ export default {
     return {
       tableHistory: [],
       dropdownValue: '',
+      currentPage: 1,
+      perPage: 6,
+      rows: 0, // Total de itens em tableHistory
       tableHistoryManutencao: [],
       isFull: false,
+    }
+  },
+  computed: {
+    paginatedHistory() {
+      const start = (this.currentPage - 1) * this.perPage;
+      const end = start + this.perPage;
+      return this.tableHistory.slice(start, end);
     }
   },
   methods :{
@@ -144,6 +163,7 @@ export default {
                 });
               });
             }
+            this.rows = this.tableHistory.length; // Atualize o total de linhas após receber os dados
           })
           .catch((error) => {
             // Tratar erros aqui, caso ocorram

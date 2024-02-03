@@ -51,7 +51,7 @@
             <td class="align-middle text-center">
               <span class="text-secondary text-xs font-weight-bold">{{ history.history }}</span>
             </td>
-            <td class="align-middle text-center">
+            <td class="align-middle text-center" style="width: 10px">
               <i @click="editPiscina(history.ID)" class="ni ni-settings-gear-65" style="cursor: pointer !important;"></i>
             </td>
           </tr>

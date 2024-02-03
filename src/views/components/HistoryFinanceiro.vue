@@ -17,7 +17,7 @@
       </b-col>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
-      <div class="table-responsive p-0">
+      <div class="table-responsive p-0" style="margin-bottom: 0px;">
         <table class="table align-items-center mb-0">
           <thead>
           <tr>
@@ -26,6 +26,7 @@
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Data</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Valor</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
           </tr>
           </thead>
@@ -50,10 +51,10 @@
             <td class="align-middle text-center">
               <span class="text-secondary text-xs font-weight-bold" :class="getPriorityClass(history.status)">{{ history.status }}</span>
             </td>
-            <td class="align-middle text-center">
+            <td class="align-middle text-center" style="width: 10px">
               <i @click="editFinanceiro(history.ID, history.status)" class="ni ni-settings-gear-65" style="cursor: pointer !important;"></i>
             </td>
-            <td class="align-middle text-center">
+            <td class="align-middle text-center" style="width: 10px">
               <i @click="delFinanceiro(history.ID)" class="pi pi-trash" style="cursor: pointer"></i>
             </td>
           </tr>
